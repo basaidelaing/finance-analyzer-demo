@@ -1,0 +1,57 @@
+{
+  "2014": {
+    "depreciation_amortization_ratio": 0.9348075589534404,
+    "asset_impairment_rate": 0.03969737673799092,
+    "core_profit_margin": 2.29497515602143
+  },
+  "2015": {
+    "depreciation_amortization_ratio": 0.7847658159092551,
+    "asset_impairment_rate": 0.0333302146504122,
+    "core_profit_margin": 2.9469068094465736
+  },
+  "2016": {
+    "depreciation_amortization_ratio": 0.7322209817770787,
+    "asset_impairment_rate": 0.01030923089797929,
+    "core_profit_margin": 3.340064559826408
+  },
+  "2017": {
+    "depreciation_amortization_ratio": 8.885762983279688,
+    "asset_impairment_rate": 0.5102289139260385,
+    "core_profit_margin": 33.51188434292567
+  },
+  "2018": {
+    "depreciation_amortization_ratio": 6.636763367609064,
+    "asset_impairment_rate": 0.08129104381137363,
+    "core_profit_margin": 35.25874166385693
+  },
+  "2019": {
+    "depreciation_amortization_ratio": 5.3973000478207185,
+    "asset_impairment_rate": -0.08636709380303921,
+    "core_profit_margin": 36.657981970580664
+  },
+  "2020": {
+    "depreciation_amortization_ratio": 5.908745388665467,
+    "asset_impairment_rate": -0.05165211511724968,
+    "core_profit_margin": 37.91743367123204
+  },
+  "2021": {
+    "depreciation_amortization_ratio": 4.440590838293795,
+    "asset_impairment_rate": -0.025796071779680827,
+    "core_profit_margin": 40.5460705890238
+  },
+  "2022": {
+    "depreciation_amortization_ratio": 3.9364381977459497,
+    "asset_impairment_rate": -0.02917422473513047,
+    "core_profit_margin": 42.26137886610766
+  },
+  "2023": {
+    "depreciation_amortization_ratio": 4.350856507925301,
+    "asset_impairment_rate": -0.053531992850800306,
+    "core_profit_margin": 41.786239954333716
+  },
+  "2024": {
+    "depreciation_amortization_ratio": 5.701654976199602,
+    "asset_impairment_rate": -0.020610699507303317,
+    "core_profit_margin": 41.072394377816174
+  }
+}

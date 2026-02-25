@@ -1,0 +1,16 @@
+{
+  "7.25.1": {
+    "name": "资产减值准备率",
+    "company_value": 0.0,
+    "industry_value": 0.0,
+    "relative_value": 1.0,
+    "year": "2023"
+  },
+  "7.42.1": {
+    "name": "摊销折旧比率",
+    "company_value": 0.0,
+    "industry_value": 0.0,
+    "relative_value": 1.0,
+    "year": "2023"
+  }
+}

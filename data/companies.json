@@ -1,0 +1,68 @@
+[
+  {
+    "ts_code": "000568.SZ",
+    "name": "泸州老窖",
+    "industry": "白酒",
+    "list_date": "19940509"
+  },
+  {
+    "ts_code": "000596.SZ",
+    "name": "古井贡酒",
+    "industry": "白酒",
+    "list_date": "19960927"
+  },
+  {
+    "ts_code": "000799.SZ",
+    "name": "酒鬼酒",
+    "industry": "白酒",
+    "list_date": "19970718"
+  },
+  {
+    "ts_code": "600809.SH",
+    "name": "山西汾酒",
+    "industry": "白酒",
+    "list_date": "19940224"
+  },
+  {
+    "ts_code": "000858.SZ",
+    "name": "五粮液",
+    "industry": "白酒",
+    "list_date": "19980427"
+  },
+  {
+    "ts_code": "002304.SZ",
+    "name": "洋河股份",
+    "industry": "白酒",
+    "list_date": "20091106"
+  },
+  {
+    "ts_code": "603369.SH",
+    "name": "今世缘",
+    "industry": "白酒",
+    "list_date": "20140703"
+  },
+  {
+    "ts_code": "600702.SH",
+    "name": "舍得酒业",
+    "industry": "白酒",
+    "list_date": "19960524"
+  },
+  {
+    "ts_code": "600779.SH",
+    "name": "水井坊",
+    "industry": "白酒",
+    "list_date": "19960524"
+  },
+  {
+    "ts_code": "603589.SH",
+    "name": "口子窖",
+    "industry": "白酒",
+    "list_date": "20150629"
+  },
+  {
+    "ts_code": "600519.SH",
+    "name": "贵州茅台",
+    "industry": "白酒",
+    "list_date": "20010827"
+  }
+]

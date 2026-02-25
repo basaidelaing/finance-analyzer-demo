@@ -1,0 +1,56 @@
+{
+  "calculation_time": "2026-02-25T16:06:40.841976",
+  "total_companies": 3,
+  "successful_companies": 3,
+  "failed_companies": 0,
+  "data_source": "C:\\Users\\liuwe\\.openclaw\\workspace\\finance_analyzer\\cal-Indicator\\data_actual",
+  "results_directory": "C:\\Users\\liuwe\\.openclaw\\workspace\\finance_analyzer\\cal-Indicator\\data\\calculation_results",
+  "skip_industry": false,
+  "company_results_summary": {
+    "600809.SH": {
+      "total_indicators": 29,
+      "indicator_groups": 16,
+      "results_file": "C:\\Users\\liuwe\\.openclaw\\workspace\\finance_analyzer\\cal-Indicator\\data\\calculation_results\\companies\\600809.SH\\all_indicators.json"
+    },
+    "603369.SH": {
+      "total_indicators": 29,
+      "indicator_groups": 16,
+      "results_file": "C:\\Users\\liuwe\\.openclaw\\workspace\\finance_analyzer\\cal-Indicator\\data\\calculation_results\\companies\\603369.SH\\all_indicators.json"
+    },
+    "603589.SH": {
+      "total_indicators": 29,
+      "indicator_groups": 16,
+      "results_file": "C:\\Users\\liuwe\\.openclaw\\workspace\\finance_analyzer\\cal-Indicator\\data\\calculation_results\\companies\\603589.SH\\all_indicators.json"
+    }
+  },
+  "calculation_reports": [
+    {
+      "company": "600809.SH",
+      "status": "计算成功",
+      "total_indicators": 29,
+      "indicator_groups": 16
+    },
+    {
+      "company": "603369.SH",
+      "status": "计算成功",
+      "total_indicators": 29,
+      "indicator_groups": 16
+    },
+    {
+      "company": "603589.SH",
+      "status": "计算成功",
+      "total_indicators": 29,
+      "indicator_groups": 16
+    }
+  ],
+  "missing_data_reports": [
+    {
+      "company": "603589.SH",
+      "missing_fields": {
+        "balancesheet": [
+          "lt_eqt_invest(无实际数据)"
+        ]
+      }
+    }
+  ]
+}

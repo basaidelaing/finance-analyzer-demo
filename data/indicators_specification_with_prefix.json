@@ -1,0 +1,595 @@
+{
+  "project_name": "白酒行业财务指标计算规范",
+  "version": "1.0.0",
+  "created_date": "2026-02-24",
+  "description": "基于tushare财务数据的16个指标组29个具体财务指标计算规范",
+  "data_source": "tushare",
+  "companies_count": 11,
+  "time_range": "2015-2024",
+  "indicators_groups": [
+    {
+      "group_code": "7.11",
+      "group_name": "核心利润与核心利润率",
+      "group_name_en": "Core Profit and Core Profit Margin",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.11.1",
+          "indicator_name": "核心利润",
+          "indicator_name_en": "Core Profit",
+          "chart_type": "柱状图",
+          "formula_description": "核心利润 = 营业收入 - 营业成本 - 税金及附加 - 销售费用 - 管理费用 - 研发费用 - 财务费用",
+          "formula_tushare": "tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp",
+          "unit": "万元",
+          "notes": "直接计算，所有字段在tushare中都可用",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.11.2",
+          "indicator_name": "核心利润率",
+          "indicator_name_en": "Core Profit Margin",
+          "chart_type": "折线图",
+          "formula_description": "核心利润率 = 核心利润 / 营业收入 × 100%",
+          "formula_tushare": "(tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) / tushare.total_revenue * 100",
+          "unit": "%",
+          "notes": "基于7.11.1计算，需要确保营业收入不为0",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "derived",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.12",
+      "group_name": "利润结构健康度（三支柱分析）",
+      "group_name_en": "Profit Structure Health (Three Pillars Analysis)",
+      "indicators_count": 3,
+      "indicators": [
+        {
+          "indicator_code": "7.12.1",
+          "indicator_name": "核心利润占比",
+          "indicator_name_en": "Core Profit Ratio",
+          "chart_type": "堆叠柱状图",
+          "formula_description": "核心利润占营业利润的比率 = 核心利润 / 营业利润",
+          "formula_tushare": "(tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) / tushare.operate_profit * 100",
+          "unit": "%",
+          "notes": "需要确保营业利润不为0",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.12.2",
+          "indicator_name": "其他收益占比",
+          "indicator_name_en": "Other Income Ratio",
+          "chart_type": "堆叠柱状图",
+          "formula_description": "其他收益（政府补助等）占营业利润的比率 = 其他收益 / 营业利润",
+          "formula_tushare": "tushare.non_oper_income / tushare.operate_profit * 100",
+          "unit": "%",
+          "notes": "tushare字段名为non_oper_income，需要确保营业利润不为0",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.12.3",
+          "indicator_name": "杂项收益占比",
+          "indicator_name_en": "Miscellaneous Income Ratio",
+          "chart_type": "堆叠柱状图",
+          "formula_description": "杂项收益（投资收益等）占营业利润的比率 = 杂项收益 / 营业利润",
+          "formula_tushare": "(tushare.invest_income + tushare.fv_value_chg_gain + tushare.nca_disploss + tushare.oth_compr_income) / tushare.operate_profit * 100",
+          "unit": "%",
+          "notes": "杂项收益包括投资收益、公允价值变动收益、资产处置收益、其他综合收益，需要确保营业利润不为0",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.13",
+      "group_name": "资产结构性收益比率",
+      "group_name_en": "Asset Structural Return Ratio",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.13.1",
+          "indicator_name": "经营资产报酬率",
+          "indicator_name_en": "Operating Assets Return Rate",
+          "chart_type": "折线图",
+          "formula_description": "经营资产报酬率 = (核心利润 + 其他收益) / 平均经营资产",
+          "formula_tushare": "((tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) + tushare.non_oper_income) / ((经营资产_期初 + 经营资产_期末) / 2) * 100",
+          "unit": "%",
+          "notes": "经营资产 = total_assets - money_cap * 0.4 - trad_asset - invest_real_estate - lt_eqt_invest，需要计算期初和期末平均值",
+          "data_source_tables": [
+            "income",
+            "balancesheet"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "使用40%的货币资金作为经营性资金是行业假设"
+        },
+        {
+          "indicator_code": "7.13.2",
+          "indicator_name": "投资资产报酬率",
+          "indicator_name_en": "Investment Assets Return Rate",
+          "chart_type": "折线图",
+          "formula_description": "投资资产报酬率 = 杂项收益 / 平均投资资产",
+          "formula_tushare": "(tushare.invest_income + tushare.fv_value_chg_gain + tushare.nca_disploss + tushare.oth_compr_income) / ((投资资产_期初 + 投资资产_期末) / 2) * 100",
+          "unit": "%",
+          "notes": "投资资产 = money_cap * 0.6 + trad_asset + invest_real_estate + lt_eqt_invest，需要计算期初和期末平均值",
+          "data_source_tables": [
+            "income",
+            "balancesheet"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "使用60%的货币资金作为投资性资金是行业假设"
+        }
+      ]
+    },
+    {
+      "group_code": "7.14",
+      "group_name": "经营资产'轻/重/虚'化指数",
+      "group_name_en": "Operating Assets 'Light/Heavy/Virtual' Index",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.14.1",
+          "indicator_name": "\"虚\"化比率",
+          "indicator_name_en": "\"Virtual\" Ratio",
+          "chart_type": "折线图",
+          "formula_description": "\"虚\"化比率 = (商誉 + 并购产生的可辨认无形资产) / 经营资产",
+          "formula_tushare": "(tushare.goodwill + tushare.intan_assets * 0.2) / (tushare.total_assets - tushare.money_cap * 0.4 - tushare.trad_asset - tushare.invest_real_estate - tushare.lt_eqt_invest) * 100",
+          "unit": "%",
+          "notes": "假设20%的无形资产来自并购，这是白酒行业特点",
+          "data_source_tables": [
+            "balancesheet"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "20%的无形资产来自并购是行业假设"
+        },
+        {
+          "indicator_code": "7.14.2",
+          "indicator_name": "\"重\"化比率",
+          "indicator_name_en": "\"Heavy\" Ratio",
+          "chart_type": "折线图",
+          "formula_description": "\"重\"化比率 = (固定资产 + 在建工程) / 经营资产",
+          "formula_tushare": "(tushare.fix_assets + tushare.cip) / (tushare.total_assets - tushare.money_cap * 0.4 - tushare.trad_asset - tushare.invest_real_estate - tushare.lt_eqt_invest) * 100",
+          "unit": "%",
+          "notes": "直接计算",
+          "data_source_tables": [
+            "balancesheet"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.21",
+      "group_name": "核心利润获现率",
+      "group_name_en": "Core Profit Cash Realization Rate",
+      "indicators_count": 1,
+      "indicators": [
+        {
+          "indicator_code": "7.21.1",
+          "indicator_name": "核心利润获现率",
+          "indicator_name_en": "Core Profit Cash Realization Rate",
+          "chart_type": "折线图",
+          "formula_description": "核心利润获现率 = 经营活动现金流量净额 / (核心利润 + 其他收益)",
+          "formula_tushare": "tushare.n_cashflow_act / ((tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) + tushare.non_oper_income)",
+          "unit": "倍数",
+          "notes": "需要确保分母不为0",
+          "data_source_tables": [
+            "cashflow",
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.22",
+      "group_name": "经营现金流结构安全性",
+      "group_name_en": "Operating Cash Flow Structure Safety",
+      "indicators_count": 4,
+      "indicators": [
+        {
+          "indicator_code": "7.22.1",
+          "indicator_name": "经营性现金流",
+          "indicator_name_en": "Operating Cash Flow",
+          "chart_type": "折线图",
+          "formula_description": "直接使用经营活动现金流量净额",
+          "formula_tushare": "tushare.n_cashflow_act",
+          "unit": "万元",
+          "notes": "直接使用tushare字段",
+          "data_source_tables": [
+            "cashflow"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.22.2",
+          "indicator_name": "折旧摊销",
+          "indicator_name_en": "Depreciation and Amortization",
+          "chart_type": "堆积柱状图",
+          "formula_description": "直接使用折旧摊销金额",
+          "formula_tushare": "tushare.depr_fa_coga_dpba",
+          "unit": "万元",
+          "notes": "tushare字段名为depr_fa_coga_dpba",
+          "data_source_tables": [
+            "cashflow"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.22.3",
+          "indicator_name": "利息支出",
+          "indicator_name_en": "Interest Expense",
+          "chart_type": "堆积柱状图",
+          "formula_description": "直接使用利息支出",
+          "formula_tushare": "tushare.int_exp",
+          "unit": "万元",
+          "notes": "根据deepseek咨询，tushare中利息支出字段为int_exp（利润表）或fin_exp_int_exp",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.22.4",
+          "indicator_name": "现金股利",
+          "indicator_name_en": "Cash Dividends",
+          "chart_type": "堆积柱状图",
+          "formula_description": "直接使用现金股利",
+          "formula_tushare": "tushare.c_pay_dist_dpcp_int_exp - tushare.int_exp",
+          "unit": "万元",
+          "notes": "根据deepseek咨询，tushare中现金股利需要从c_pay_dist_dpcp_int_exp中减去利息支出计算",
+          "data_source_tables": [
+            "cashflow",
+            "income"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "c_pay_dist_dpcp_int_exp包含利息支出和股利支付，需要拆分"
+        }
+      ]
+    },
+    {
+      "group_code": "7.23",
+      "group_name": "行业壁垒系数",
+      "group_name_en": "Industry Barrier Coefficient",
+      "indicators_count": 1,
+      "indicators": [
+        {
+          "indicator_code": "7.23.1",
+          "indicator_name": "行业壁垒系数",
+          "indicator_name_en": "Industry Barrier Coefficient",
+          "chart_type": "折线图",
+          "formula_description": "行业壁垒系数 = 公司核心利润率 / 行业平均核心利润率",
+          "formula_tushare": "((tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) / tushare.total_revenue * 100) / industry_avg_core_profit_margin",
+          "unit": "倍数",
+          "notes": "行业平均核心利润率需要计算11家白酒公司的平均值",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.24",
+      "group_name": "\"两个搅局\"的侵蚀度",
+      "group_name_en": "\"Two Disruptors\" Erosion Degree",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.24.1",
+          "indicator_name": "减值侵蚀率",
+          "indicator_name_en": "Impairment Erosion Rate",
+          "chart_type": "折线图",
+          "formula_description": "减值侵蚀率 = (资产减值损失 + 信用减值损失) / 核心利润，取绝对值计算",
+          "formula_tushare": "ABS(tushare.assets_impair_loss + 0) / ABS(tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) * 100",
+          "unit": "%",
+          "notes": "根据实际验证，tushare中没有单独的信用减值损失字段(credit_impa_loss)，白酒行业信用减值损失通常为0。使用资产减值损失作为总减值损失。",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": true,
+          "approximation_note": "假设信用减值损失为0，这是白酒行业特点"
+        },
+        {
+          "indicator_code": "7.24.2",
+          "indicator_name": "固定资产减值占比",
+          "indicator_name_en": "Fixed Assets Impairment Proportion",
+          "chart_type": "折线图",
+          "formula_description": "固定资产减值占比 = 固定资产减值损失 / (资产减值损失 + 信用减值损失)",
+          "formula_tushare": "tushare.assets_impair_loss * 0.7 / (tushare.assets_impair_loss + 0) * 100",
+          "unit": "%",
+          "notes": "假设70%的资产减值损失来自固定资产，这是白酒行业重资产特点。根据实际验证，tushare中没有单独的信用减值损失字段(credit_impa_loss)，白酒行业信用减值损失通常为0。",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "使用70%的比例是行业假设，假设信用减值损失为0"
+        }
+      ]
+    },
+    {
+      "group_code": "7.25",
+      "group_name": "减值准备计提的激进/保守指数",
+      "group_name_en": "Impairment Provision Aggressive/Conservative Index",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.25.1",
+          "indicator_name": "资产减值准备率",
+          "indicator_name_en": "Asset Impairment Provision Rate",
+          "chart_type": "折线图",
+          "formula_description": "资产减值准备率 = 累计减值损失 / 总资产",
+          "formula_tushare": "calculate_accumulated_impairment(tushare.ts_code, tushare.end_date) / tushare.total_assets * 100",
+          "unit": "%",
+          "notes": "需要从历史数据计算累计减值损失。计算方法：累计过去5年的资产减值损失(assets_impair_loss)和信用减值损失(credit_impa_loss)。如果历史数据不足，使用当期减值损失作为近似值。",
+          "data_source_tables": [
+            "income",
+            "balancesheet"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "使用历史数据计算累计减值损失，如果数据不足则使用当期值近似"
+        },
+        {
+          "indicator_code": "7.25.2",
+          "indicator_name": "激进/保守指数",
+          "indicator_name_en": "Aggressive/Conservative Index",
+          "chart_type": "数字",
+          "formula_description": "激进/保守指数 = 资产减值准备率 / 行业中位数",
+          "formula_tushare": "asset_impairment_provision_rate / calculate_industry_median(tushare.ts_code, tushare.end_date, 'impairment_rate')",
+          "unit": "倍数",
+          "notes": "asset_impairment_provision_rate来自7.25.1的计算结果。industry_median_impairment_rate需要计算行业11家公司的中位数。",
+          "data_source_tables": [
+            "derived"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.31",
+      "group_name": "造血与输血结构分析",
+      "group_name_en": "Blood-making and Blood-transfusion Structure Analysis",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.31.1",
+          "indicator_name": "造血占比",
+          "indicator_name_en": "Blood-making Proportion",
+          "chart_type": "折线图",
+          "formula_description": "造血占比 = (经营性负债 + 留存收益) / 总资产",
+          "formula_tushare": "((tushare.total_liab - tushare.lt_borr) + (tushare.undistr_porfit + tushare.surplus_rese + tushare.cap_rese)) / tushare.total_assets * 100",
+          "unit": "%",
+          "notes": "根据deepseek咨询，tushare中留存收益 = undistr_porfit + surplus_rese + cap_rese。字段验证通过：所有字段均为tushare有效字段。",
+          "data_source_tables": [
+            "balancesheet"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.31.2",
+          "indicator_name": "输血占比",
+          "indicator_name_en": "Blood-transfusion Proportion",
+          "chart_type": "折线图",
+          "formula_description": "输血占比 = (金融性负债 + 股本与资本公积) / 总资产",
+          "formula_tushare": "(tushare.lt_borr + tushare.total_share + tushare.cap_rese) / tushare.total_assets * 100",
+          "unit": "%",
+          "notes": "直接计算。字段验证通过：所有字段均为tushare有效字段。注意：lt_borr字段对于银行等金融机构可能为空。",
+          "data_source_tables": [
+            "balancesheet"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.32",
+      "group_name": "有息负债与利息保障",
+      "group_name_en": "Interest-bearing Debt and Interest Coverage",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.32.1",
+          "indicator_name": "有息负债率",
+          "indicator_name_en": "Interest-bearing Debt Ratio",
+          "chart_type": "折线图",
+          "formula_description": "有息负债率 = 有息负债 / 总资产",
+          "formula_tushare": "tushare.lt_borr / tushare.total_assets * 100",
+          "unit": "%",
+          "notes": "直接计算。注意：对于银行等金融机构，lt_borr字段可能为空，需特殊处理。字段验证通过：lt_borr和total_assets均为tushare有效字段。",
+          "data_source_tables": [
+            "balancesheet"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.32.2",
+          "indicator_name": "利息保障倍数",
+          "indicator_name_en": "Interest Coverage Multiple",
+          "chart_type": "折线图",
+          "formula_description": "利息保障倍数 = (核心利润 + 其他收益) / 利息费用",
+          "formula_tushare": "((tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) + tushare.non_oper_income) / (tushare.fin_exp * 0.7)",
+          "unit": "倍数",
+          "notes": "假设70%的财务费用为利息支出，这是白酒行业特点。注意：对于某些行业（如银行），oper_cost、sell_exp、rd_exp、fin_exp等字段可能为空，需处理空值情况。字段验证通过：所有字段均为tushare有效字段。",
+          "data_source_tables": [
+            "income"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "使用fin_exp * 0.7作为利息费用的近似值"
+        }
+      ]
+    },
+    {
+      "group_code": "7.33",
+      "group_name": "资本结构定位",
+      "group_name_en": "Capital Structure Positioning",
+      "indicators_count": 1,
+      "indicators": [
+        {
+          "indicator_code": "7.33.1",
+          "indicator_name": "资本结构定位",
+          "indicator_name_en": "Capital Structure Positioning",
+          "chart_type": "象限点阵图",
+          "formula_description": "以\"造血占比\"和\"输血结构\"为轴，定位为利润积累型、经营驱动型、金融负债驱动型、股东输血型四种",
+          "formula_tushare": "positioning_matrix(blood_making_proportion, blood_transfusion_proportion)",
+          "unit": "无",
+          "notes": "基于7.31.1和7.31.2的结果进行矩阵定位。字段验证通过：依赖的衍生指标基于已验证的tushare字段。",
+          "data_source_tables": [
+            "derived"
+          ],
+          "calculation_method": "matrix",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.41",
+      "group_name": "经营资产周转率",
+      "group_name_en": "Operating Assets Turnover Rate",
+      "indicators_count": 1,
+      "indicators": [
+        {
+          "indicator_code": "7.41.1",
+          "indicator_name": "经营资产周转率",
+          "indicator_name_en": "Operating Assets Turnover Rate",
+          "chart_type": "折线图",
+          "formula_description": "经营资产周转率 = 营业收入 / 平均经营资产",
+          "formula_tushare": "tushare.total_revenue / ((total_assets_begin - money_cap_begin * 0.4 - trad_asset_begin - invest_real_estate_begin - lt_eqt_invest_begin + total_assets_end - money_cap_end * 0.4 - trad_asset_end - invest_real_estate_end - lt_eqt_invest_end) / 2)",
+          "unit": "次/年",
+          "notes": "经营资产计算公式：total_assets - money_cap * 0.4 - trad_asset - invest_real_estate - lt_eqt_invest，需要期初和期末数据计算平均值。根据字段验证，使用正确的tushare字段名。",
+          "data_source_tables": [
+            "income",
+            "balancesheet"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.42",
+      "group_name": "摊销政策激进指数",
+      "group_name_en": "Amortization Policy Aggressive Index",
+      "indicators_count": 2,
+      "indicators": [
+        {
+          "indicator_code": "7.42.1",
+          "indicator_name": "摊销政策激进指数",
+          "indicator_name_en": "Amortization Policy Aggressive Index",
+          "chart_type": "数字",
+          "formula_description": "摊销政策激进指数 = 公司年摊销金额占核心利润比率 / 行业中位数",
+          "formula_tushare": "(tushare.depr_fa_coga_dpba / (tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp)) / industry_median_amortization_ratio",
+          "unit": "倍数",
+          "notes": "根据字段验证，tushare中可能没有单独的无形资产摊销字段，使用depr_fa_coga_dpba（折旧摊销）作为近似值。industry_median_amortization_ratio需要计算11家白酒公司的中位数。",
+          "data_source_tables": [
+            "cashflow",
+            "income"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": false
+        },
+        {
+          "indicator_code": "7.42.2",
+          "indicator_name": "摊销前利润率",
+          "indicator_name_en": "Pre-amortization Profit Margin",
+          "chart_type": "折线图",
+          "formula_description": "摊销前利润率 = (核心利润 + 无形资产摊销) / 营业收入",
+          "formula_tushare": "((tushare.total_revenue - tushare.oper_cost - tushare.biz_tax_surchg - tushare.sell_exp - tushare.admin_exp - tushare.rd_exp - tushare.fin_exp) + tushare.depr_fa_coga_dpba) / tushare.total_revenue * 100",
+          "unit": "%",
+          "notes": "根据字段验证，tushare中可能没有单独的无形资产摊销字段，使用depr_fa_coga_dpba（折旧摊销）作为近似值。",
+          "data_source_tables": [
+            "cashflow",
+            "income"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.51",
+      "group_name": "ROE",
+      "group_name_en": "Return on Equity",
+      "indicators_count": 1,
+      "indicators": [
+        {
+          "indicator_code": "7.51.1",
+          "indicator_name": "ROE",
+          "indicator_name_en": "Return on Equity",
+          "chart_type": "折线图",
+          "formula_description": "ROE = 归母净利润 / 平均归母净资产",
+          "formula_tushare": "tushare.n_income_attr_p / ((previous_total_hldr_eqy_exc_min_int + tushare.total_hldr_eqy_exc_min_int) / 2) * 100",
+          "unit": "%",
+          "notes": "根据字段验证：1) tushare中归母净利润字段为n_income_attr_p；2) 归母净资产字段为total_hldr_eqy_exc_min_int（股东权益合计不含少数股东权益）；3) previous_total_hldr_eqy_exc_min_int需要从历史数据获取上一年度的值。需要确保平均归母净资产不为0，否则返回0并标记为无效数据。",
+          "data_source_tables": [
+            "income",
+            "balancesheet"
+          ],
+          "calculation_method": "direct",
+          "approximation_required": false
+        }
+      ]
+    },
+    {
+      "group_code": "7.52",
+      "group_name": "价值创造与资金状态",
+      "group_name_en": "Value Creation and Fund Status",
+      "indicators_count": 1,
+      "indicators": [
+        {
+          "indicator_code": "7.52.1",
+          "indicator_name": "财务战略矩阵",
+          "indicator_name_en": "Financial Strategy Matrix",
+          "chart_type": "象限点阵图",
+          "formula_description": "(经营资产报酬率 - 有息负债利率)为纵轴（价值创造），以(销售增长率 - 可持续增长率)为横轴（资金状态）定位",
+          "formula_tushare": "y_axis = ((tushare.operate_profit + tushare.fin_exp) / ((total_assets_begin - money_cap_begin*0.4 - trad_asset_begin - invest_real_estate_begin - lt_eqt_invest_begin + total_assets_end - money_cap_end*0.4 - trad_asset_end - invest_real_estate_end - lt_eqt_invest_end)/2)) - (tushare.fin_exp / ((lt_borr_begin + lt_borr_end)/2)); x_axis = ((tushare.total_revenue - total_previous_total_revenue) / total_previous_total_revenue) - (ROE * (1 - (cash_dividend / tushare.n_income_attr_p)))",
+          "unit": "无",
+          "notes": "财务战略矩阵计算涉及多个衍生指标：1) 经营资产报酬率：使用7.13.1的计算方法；2) 有息负债利率：财务费用 / 平均有息负债；3) 销售增长率：(本期营业收入 - 上期营业收入) / 上期营业收入；4) 可持续增长率：ROE × (1 - 股利支付率)，股利支付率 = 现金股利 / 归母净利润；5) ROE：来自7.51指标的计算结果。需要确保所有分母不为0，缺失数据使用行业平均值替代。现金股利数据可能需要从dividend表获取或使用c_pay_dist_dpcp_int_exp - int_exp近似计算。",
+          "data_source_tables": [
+            "income",
+            "balancesheet",
+            "cashflow",
+            "derived"
+          ],
+          "calculation_method": "complex",
+          "approximation_required": true,
+          "approximation_note": "涉及多个近似计算：1) 经营资产使用40%货币资金假设；2) 现金股利可能需要近似计算；3) 缺失数据使用行业平均值"
+        }
+      ]
+    }
+  ]
+}
