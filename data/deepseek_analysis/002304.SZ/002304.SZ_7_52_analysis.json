@@ -1,0 +1,185 @@
+{
+  "company_name": "洋河股份",
+  "company_code": "002304.SZ",
+  "indicator_code": "7.52",
+  "indicator_name": "财务战略矩阵定",
+  "analysis_date": "2026-02-25 22:13:56",
+  "data_source": "DeepSeek API分析",
+  "data_period": "2014-2024年",
+  "time_series_data": {
+    "7.52.1": {
+      "2014": {
+        "value": {
+          "x": -22.95682317042495,
+          "y": 186010.87321900367,
+          "year": 2014,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 42.00317688915155,
+            "interest_rate": -185968.87004211452,
+            "sales_growth": 0.0,
+            "sustainable_growth": 22.95682317042495
+          }
+        },
+        "unit": "万元"
+      },
+      "2015": {
+        "value": {
+          "x": -5.652435374752354,
+          "y": 83096.70949154253,
+          "year": 2015,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 21.113139337005734,
+            "interest_rate": -83075.59635220552,
+            "sales_growth": 9.407096300607833,
+            "sustainable_growth": 15.059531675360187
+          }
+        },
+        "unit": "万元"
+      },
+      "2016": {
+        "value": {
+          "x": -5.928616926188848,
+          "y": 4121.620446258759,
+          "year": 2016,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 20.78070842761062,
+            "interest_rate": -4100.839737831148,
+            "sales_growth": 7.043572391887132,
+            "sustainable_growth": 12.97218931807598
+          }
+        },
+        "unit": "万元"
+      },
+      "2017": {
+        "value": {
+          "x": 3.3209853410755965,
+          "y": 18672.852588552363,
+          "year": 2017,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 20.846455978777016,
+            "interest_rate": -18652.006132573588,
+            "sales_growth": 15.915818955633625,
+            "sustainable_growth": 12.594833614558029
+          }
+        },
+        "unit": "万元"
+      },
+      "2018": {
+        "value": {
+          "x": 7.612009388737359,
+          "y": 51203.734487004345,
+          "year": 2018,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 22.280287271496128,
+            "interest_rate": -51181.45419973285,
+            "sales_growth": 21.2966766636826,
+            "sustainable_growth": 13.684667274945241
+          }
+        },
+        "unit": "万元"
+      },
+      "2019": {
+        "value": {
+          "x": -11.64775853036532,
+          "y": 71911.0219683477,
+          "year": 2019,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 17.769845052180088,
+            "interest_rate": -71893.25212329552,
+            "sales_growth": -4.277042956881597,
+            "sustainable_growth": 7.370715573483722
+          }
+        },
+        "unit": "万元"
+      },
+      "2020": {
+        "value": {
+          "x": -16.566966761363936,
+          "y": 159956.19760156077,
+          "year": 2020,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 14.200425098830022,
+            "interest_rate": -159941.99717646194,
+            "sales_growth": -8.75803851726146,
+            "sustainable_growth": 7.808928244102477
+          }
+        },
+        "unit": "万元"
+      },
+      "2021": {
+        "value": {
+          "x": 12.824101188646537,
+          "y": 1097776.165538942,
+          "year": 2021,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 16.2371561039252,
+            "interest_rate": -1097759.9283828381,
+            "sales_growth": 20.137039838069654,
+            "sustainable_growth": 7.312938649423117
+          }
+        },
+        "unit": "万元"
+      },
+      "2022": {
+        "value": {
+          "x": 7.936447271516263,
+          "y": 1750487.823968424,
+          "year": 2022,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 19.985932120479692,
+            "interest_rate": -1750467.8380363034,
+            "sales_growth": 18.756152102375957,
+            "sustainable_growth": 10.819704830859694
+          }
+        },
+        "unit": "万元"
+      },
+      "2023": {
+        "value": {
+          "x": 1.2198946267981459,
+          "y": 4150325.1401207964,
+          "year": 2023,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 19.482089993077302,
+            "interest_rate": -4150305.6580308033,
+            "sales_growth": 10.036179318049964,
+            "sustainable_growth": 8.816284691251818
+          }
+        },
+        "unit": "万元"
+      },
+      "2024": {
+        "value": {
+          "x": -19.858371249642484,
+          "y": 17.150755826809547,
+          "year": 2024,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 17.150755826809547,
+            "interest_rate": 0.0,
+            "sales_growth": -16.93457739333071,
+            "sustainable_growth": 2.923793856311774
+          }
+        },
+        "unit": "万元"
+      }
+    }
+  },
+  "analysis_framework": {
+    "direct_analysis": "基于阈值标准和时间趋势的直接评估",
+    "indirect_analysis": "结合白酒行业特点和周期趋势的间接分析",
+    "conclusion": "基于时间序列趋势的简洁结论"
+  },
+  "raw_analysis": "```json\n{\n    \"direct_analysis\": \"价值创造（x）波动剧烈，2017-2018、2021-2023年为正，其余为负。资金状态（y）持续为正且大幅增长，公司长期处于现金剩余状态。\",\n    \"indirect_analysis\": \"行业高盈利特性支撑了强劲的现金生成能力。价值创造的波动与行业调整期（如2019-2020年）及公司自身增长节奏相关。\",\n    \"conclusion\": \"公司财务稳健，现金充裕，但价值创造能力不稳定。需关注增长质量，确保现金用于高效的价值创造项目。\"\n}\n```",
+  "parse_error": true
+}

@@ -1,0 +1,185 @@
+{
+  "company_name": "酒鬼酒",
+  "company_code": "000799.SZ",
+  "indicator_code": "7.52",
+  "indicator_name": "财务战略矩阵定",
+  "analysis_date": "2026-02-25 22:09:06",
+  "data_source": "DeepSeek API分析",
+  "data_period": "2014-2024年",
+  "time_series_data": {
+    "7.52.1": {
+      "2014": {
+        "value": {
+          "x": 11.791299211424212,
+          "y": -10.004788345287627,
+          "year": 2014,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": -10.004788345287627,
+            "interest_rate": 0.0,
+            "sales_growth": 0.0,
+            "sustainable_growth": -11.791299211424212
+          }
+        },
+        "unit": "万元"
+      },
+      "2015": {
+        "value": {
+          "x": 49.771237323577616,
+          "y": 5.08207879881047,
+          "year": 2015,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 5.08207879881047,
+            "interest_rate": 0.0,
+            "sales_growth": 54.762353334456925,
+            "sustainable_growth": 4.9911160108793124
+          }
+        },
+        "unit": "万元"
+      },
+      "2016": {
+        "value": {
+          "x": 2.93687247966041,
+          "y": 6.1843694738718415,
+          "year": 2016,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 6.1843694738718415,
+            "interest_rate": 0.0,
+            "sales_growth": 8.919480388084443,
+            "sustainable_growth": 5.982607908424033
+          }
+        },
+        "unit": "万元"
+      },
+      "2017": {
+        "value": {
+          "x": 26.72095687398274,
+          "y": 9.166379174983044,
+          "year": 2017,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 9.166379174983044,
+            "interest_rate": 0.0,
+            "sales_growth": 34.12698177594513,
+            "sustainable_growth": 7.406024901962394
+          }
+        },
+        "unit": "万元"
+      },
+      "2018": {
+        "value": {
+          "x": 26.60198421552743,
+          "y": 10.877126585958798,
+          "year": 2018,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 10.877126585958798,
+            "interest_rate": 0.0,
+            "sales_growth": 35.129396224800516,
+            "sustainable_growth": 8.527412009273085
+          }
+        },
+        "unit": "万元"
+      },
+      "2019": {
+        "value": {
+          "x": 16.10931590136619,
+          "y": 14.054638977998902,
+          "year": 2019,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 14.054638977998902,
+            "interest_rate": 0.0,
+            "sales_growth": 27.38422044248915,
+            "sustainable_growth": 11.274904541122957
+          }
+        },
+        "unit": "万元"
+      },
+      "2020": {
+        "value": {
+          "x": 3.9240039451013047,
+          "y": 18.436766263751856,
+          "year": 2020,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 18.436766263751856,
+            "interest_rate": 0.0,
+            "sales_growth": 20.786313625325995,
+            "sustainable_growth": 16.86230968022469
+          }
+        },
+        "unit": "万元"
+      },
+      "2021": {
+        "value": {
+          "x": 64.91159109999963,
+          "y": 25.989233353606718,
+          "year": 2021,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 25.989233353606718,
+            "interest_rate": 0.0,
+            "sales_growth": 86.96847955085477,
+            "sustainable_growth": 22.05688845085514
+          }
+        },
+        "unit": "万元"
+      },
+      "2022": {
+        "value": {
+          "x": 1.3610696669604359,
+          "y": 27.231718567975268,
+          "year": 2022,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 27.231718567975268,
+            "interest_rate": 0.0,
+            "sales_growth": 18.62855701535993,
+            "sustainable_growth": 17.267487348399495
+          }
+        },
+        "unit": "万元"
+      },
+      "2023": {
+        "value": {
+          "x": -33.18693947517109,
+          "y": 12.3146659987722,
+          "year": 2023,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 12.3146659987722,
+            "interest_rate": 0.0,
+            "sales_growth": -30.138738052159553,
+            "sustainable_growth": 3.0482014230115317
+          }
+        },
+        "unit": "万元"
+      },
+      "2024": {
+        "value": {
+          "x": -51.57450939775177,
+          "y": 1.4771156815086388,
+          "year": 2024,
+          "indicator_code": "7.52.1",
+          "components": {
+            "operating_asset_return": 1.4771156815086388,
+            "interest_rate": 0.0,
+            "sales_growth": -57.90819095793971,
+            "sustainable_growth": -6.3336815601879435
+          }
+        },
+        "unit": "万元"
+      }
+    }
+  },
+  "analysis_framework": {
+    "direct_analysis": "基于阈值标准和时间趋势的直接评估",
+    "indirect_analysis": "结合白酒行业特点和周期趋势的间接分析",
+    "conclusion": "基于时间序列趋势的简洁结论"
+  },
+  "raw_analysis": "```json\n{\n    \"direct_analysis\": \"2014-2022年持续创造价值，2023-2024年转为毁损价值且现金短缺，趋势由优转危。\",\n    \"indirect_analysis\": \"行业上行期价值创造强劲，但2023年后行业调整叠加销售下滑，导致象限逆转。\",\n    \"conclusion\": \"公司已进入最危险象限，需紧急调整战略以遏制价值毁损并改善现金流。\"\n}\n```",
+  "parse_error": true
+}
