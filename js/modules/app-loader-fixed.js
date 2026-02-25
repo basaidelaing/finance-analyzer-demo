@@ -126,7 +126,7 @@ class FixedModuleLoader {
         
         // 动态导入搜索模块 - 添加时间戳防止缓存
         const timestamp = new Date().getTime();
-        const modulePath = `/js/modules/search-module.js?t=${timestamp}`;
+        const modulePath = `./js/modules/search-module.js?t=${timestamp}`;
         console.log(`导入模块: ${modulePath}`);
         
         try {
@@ -171,7 +171,7 @@ class FixedModuleLoader {
         
         // 动态导入简单目录模块 - 添加时间戳防止缓存
         const timestamp = new Date().getTime();
-        const modulePath = `search-module.js?t=${timestamp} `;
+        const modulePath = ./js/modules/directory-module-fixed.js?t=${timestamp}
         console.log(`导入模块: ${modulePath}`);
         
         try {
@@ -360,5 +360,6 @@ class FixedModuleLoader {
 // 创建全局实例
 
 window.ModuleLoader = new FixedModuleLoader();
+
 
 
