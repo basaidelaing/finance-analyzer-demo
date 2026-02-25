@@ -1,0 +1,42 @@
+{
+  "7.12": {
+    "name": "利润结构健康度",
+    "description": "三支柱分析：核心利润、其他收益、杂项收益占营业利润的比率",
+    "interpretation": {
+      "description": "利润结构健康度的分析和解读",
+      "analysis_points": [
+        "这是基于我们计算结果的财务指标分析",
+        "数据来源：tushare财务数据",
+        "计算方法：按照财务分析标准计算",
+        "分析基于10家白酒公司的对比"
+      ],
+      "good_range": "根据行业标准和历史数据判断",
+      "calculation": {
+        "formula": "具体计算公式",
+        "data_sources": [
+          "income",
+          "balancesheet",
+          "cashflow"
+        ]
+      }
+    },
+    "charts": [
+      {
+        "type": "line",
+        "title": "利润结构健康度趋势",
+        "yAxisName": "数值",
+        "seriesName": "利润结构健康度"
+      }
+    ],
+    "calculation_logic": {
+      "data_sources": [
+        "income"
+      ],
+      "required_fields": [
+        "total_revenue",
+        "oper_cost"
+      ],
+      "formula": "标准计算公式"
+    }
+  }
+}
