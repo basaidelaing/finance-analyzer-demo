@@ -1,0 +1,146 @@
+<!-- 右侧主内容区 -->
+<div class="right-content">
+    
+    <!-- 右上角当前指标显示 -->
+    <div class="current-indicator-bar" style="background: #e3f2fd; padding: var(--space-md); border-radius: var(--radius-lg); margin-bottom: var(--space-lg);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h3 style="color: var(--primary-blue); margin: 0;">当前指标</h3>
+                <div id="currentIndicator" style="color: var(--text-primary); font-size: 16px; margin-top: var(--space-xs);">
+                    7.11 核心利润与核心利润率
+                </div>
+            </div>
+            <div style="color: var(--text-secondary); font-size: 14px;">
+                <span id="dataStatusText">数据状态: 等待加载</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 右下主内容显示区 -->
+    <div class="content-section">
+        
+        <!-- 当前公司信息 -->
+        <div class="company-info-bar mb-lg">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 id="currentCompanyName" style="color: var(--primary-blue); margin-bottom: var(--space-xs);">
+                        贵州茅台 (600519.SH)
+                    </h2>
+                    <div style="color: var(--text-secondary); font-size: 13px;">
+                        数据期间: <span id="currentPeriod">过去10年</span> | 
+                        行业: <span id="currentIndustry">白酒</span> | 
+                        最后更新: <span id="lastUpdate">2026-02-22</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: var(--space-sm);">
+                    <button class="refresh-btn" id="refreshBtn" style="padding: var(--space-sm) var(--space-md); background: var(--primary-blue); color: white; border: none; border-radius: var(--radius-md); cursor: pointer;">
+                        刷新数据
+                    </button>
+                    <button class="export-btn" id="exportBtn" style="padding: var(--space-sm) var(--space-md); background: var(--bg-gray); color: var(--text-primary); border: none; border-radius: var(--radius-md); cursor: pointer;">
+                        导出报告
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 调试信息面板 -->
+        <div class="debug-panel mb-lg" style="background: #f8f9fa; border-radius: var(--radius-lg); padding: var(--space-md); border: 1px solid #e0e0e0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+                <h4 style="color: #666; margin: 0;">🔍 调试信息</h4>
+                <button id="toggleDebugBtn" style="padding: var(--space-xs) var(--space-sm); background: #e3f2fd; color: #1e88e5; border: 1px solid #bbdefb; border-radius: var(--radius-sm); cursor: pointer; font-size: 12px;">
+                    切换显示
+                </button>
+            </div>
+            <div id="debugLog" style="max-height: 200px; overflow-y: auto; font-family: monospace; font-size: 12px; line-height: 1.4;">
+                <!-- 调试日志将在这里显示 -->
+                <div style="color: #666; padding: var(--space-xs);">等待数据加载...</div>
+            </div>
+        </div>
+        
+        <!-- 数据流状态 -->
+        <div class="data-flow-status mb-lg" style="background: white; border-radius: var(--radius-lg); padding: var(--space-md); border: 1px solid #e0e0e0;">
+            <h4 style="color: var(--primary-blue); margin-bottom: var(--space-md);">📊 数据流状态</h4>
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-sm);">
+                <div class="flow-step">
+                    <div class="flow-step-title">JSON定义</div>
+                    <div class="flow-step-status" id="jsonStatus" style="color: #4caf50;">✅ 完成</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-title">数据获取</div>
+                    <div class="flow-step-status" id="dataStatus" style="color: #ff9800;">⏳ 等待</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-title">指标计算</div>
+                    <div class="flow-step-status" id="calcStatus" style="color: #ff9800;">⏳ 等待</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-title">AI分析</div>
+                    <div class="flow-step-status" id="aiStatus" style="color: #ff9800;">⏳ 等待</div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-step-title">前端显示</div>
+                    <div class="flow-step-status" id="displayStatus" style="color: #ff9800;">⏳ 等待</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 图表显示区域 -->
+        <div class="chart-section mb-lg">
+            <div class="chart-container" style="background: white; border-radius: var(--radius-lg); padding: var(--space-lg); border: 1px solid #e0e0e0;">
+                <div class="chart-title" id="chartTitle" style="color: var(--primary-blue); margin-bottom: var(--space-md); font-size: 18px;">
+                    核心利润与核心利润率趋势分析
+                </div>
+                <div class="chart-wrapper" id="mainChartContainer" style="height: 400px;">
+                    <!-- 主图表将在这里渲染 -->
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #999;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: var(--space-sm);">📈</div>
+                            <p>正在加载图表数据...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 多图表容器（用于7.11, 7.12等多图表指标） -->
+            <div class="multi-charts-container" id="multiChartsContainer" style="display: none;">
+                <!-- 多图表将通过JS动态生成 -->
+            </div>
+        </div>
+        
+        <!-- AI分析结果区域 -->
+        <div class="ai-analysis-section mb-lg">
+            <div class="ai-analysis-container" style="background: white; border-radius: var(--radius-lg); padding: var(--space-lg); border: 1px solid #e0e0e0;">
+                <div class="ai-analysis-title" style="color: #4caf50; margin-bottom: var(--space-md); font-size: 18px;">
+                    🤖 AI财务分析报告
+                </div>
+                <div class="ai-analysis-content" id="aiAnalysisContent">
+                    <!-- AI分析内容将通过JS动态填充 -->
+                    <div style="display: flex; justify-content: center; align-items: center; min-height: 200px; color: #999;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: var(--space-sm);">🤖</div>
+                            <p>正在加载AI分析...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 原始数据区域 -->
+        <div class="raw-data-section">
+            <div class="data-table-container" style="background: white; border-radius: var(--radius-lg); padding: var(--space-lg); border: 1px solid #e0e0e0;">
+                <h3 style="margin-bottom: var(--space-md); color: var(--text-primary);">📊 原始数据表格</h3>
+                <div id="dataTableContent" style="overflow-x: auto;">
+                    <!-- 数据表格将通过JS动态生成 -->
+                    <div style="display: flex; justify-content: center; align-items: center; min-height: 150px; color: #999;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; margin-bottom: var(--space-sm);">📋</div>
+                            <p>正在加载原始数据...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div> <!-- 内容区域结束 -->
+    
+</div> <!-- 右侧内容区结束 -->

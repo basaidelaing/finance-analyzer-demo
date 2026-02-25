@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>调试测试</title>
+    <script>
+        // 测试JS模块加载
+        async function testModuleLoading() {
+            console.log('开始测试模块加载...');
+            
+            try {
+                // 测试动态导入
+                const modules = [
+                    './js/modules/ui-core.js',
+                    './js/modules/ui-directory.js',
+                    './js/modules/ui-ai-display.js',
+                    './js/modules/ui-raw-data.js'
+                ];
+                
+                for (const modulePath of modules) {
+                    try {
+                        const module = await import(modulePath);
+                        console.log(`✅ 模块加载成功: ${modulePath}`);
+                    } catch (error) {
+                        console.error(`❌ 模块加载失败 ${modulePath}:`, error);
+                    }
+                }
+                
+                // 测试API
+                try {
+                    const response = await fetch('/api/companies');
+                    if (response.ok) {
+                        console.log('✅ API连接成功: /api/companies');
+                    } else {
+                        console.error(`❌ API连接失败: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('❌ API连接异常:', error);
+                }
+                
+            } catch (error) {
+                console.error('测试失败:', error);
+            }
+        }
+        
+        // 页面加载完成后运行测试
+        window.addEventListener('DOMContentLoaded', testModuleLoading);
+    </script>
+</head>
+<body>
+    <h1>调试测试页面</h1>
+    <p>打开浏览器控制台查看测试结果。</p>
+    
+    <div>
+        <h2>测试项目：</h2>
+        <ul>
+            <li>JS模块加载</li>
+            <li>API连接</li>
+            <li>CSS样式</li>
+        </ul>
+    </div>
+</body>
+</html>

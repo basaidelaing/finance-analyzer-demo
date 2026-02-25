@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白酒行业财务分析系统</title>
+    
+    <!-- ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- 备用CDN -->
+    <script>
+        // 如果ECharts加载失败，尝试备用CDN
+        setTimeout(function() {
+            if (!window.echarts) {
+                console.log('ECharts加载失败，尝试备用CDN...');
+                var script = document.createElement('script');
+                script.src = 'https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js';
+                script.onload = function() {
+                    console.log('备用ECharts加载成功');
+                };
+                script.onerror = function() {
+                    console.error('所有ECharts CDN都加载失败');
+                };
+                document.head.appendChild(script);
+            }
+        }, 3000);
+    </script>
+    
+    <!-- 样式模块 -->
+    <link rel="stylesheet" href="css/blue-theme-simple.css">
+    <link rel="stylesheet" href="css/layout-module.css">
+    
+    <!-- 应用加载器 -->
+    <script src="js/modules/app-loader-fixed.js?v=20260225_1835" type="module"></script>
+    
+    <style>
+        /* 内联关键样式 */
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #4a6fa5;
+        }
+        
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .suggestion-item:hover {
+            background: #f5f7fa;
+        }
+        
+        .suggestion-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .suggestion-code {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        /* 目录样式 */
+        .directory-group {
+            margin-bottom: 10px;
+        }
+        
+        .group-header {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2c5282;
+        }
+        
+        .group-header:hover {
+            background: #e8f0fe;
+        }
+        
+        .group-content {
+            padding: 10px 0 10px 15px;
+        }
+        
+        .sub-group {
+            margin-bottom: 15px;
+        }
+        
+        .sub-group-title {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .indicator-item {
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .indicator-item:hover {
+            background: #f0f7ff;
+        }
+        
+        .indicator-item.active {
+            background: #4a6fa5;
+            color: white;
+        }
+        
+        .indicator-code {
+            font-weight: 600;
+            margin-right: 10px;
+            min-width: 40px;
+        }
+        
+        /* 标签页样式 */
+        .tab-navigation {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .tab-btn:hover {
+            color: #4a6fa5;
+        }
+        
+        .tab-btn.active {
+            color: #4a6fa5;
+            border-bottom-color: #4a6fa5;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        /* 占位符样式 */
+        .placeholder {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .placeholder h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        /* 图表容器 */
+        #mainChart {
+            width: 100%;
+            height: 400px;
+        }
+        
+        /* 数据表格 */
+        .data-table {
+            overflow-x: auto;
+        }
+        
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        /* 错误消息 */
+        .error-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #e74c3c;
+        }
+        
+        .error-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            .group-header {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .indicator-item {
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+        }
+        
+        /* 多图表布局样式 */
+        .charts-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .chart-container {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #bee3f8;
+        }
+        
+        .chart-title {
+            color: #2c5282;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .chart-canvas {
+            width: 100%;
+            height: 300px;
+        }
+    
+        /* 基本页面样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        #appContainer {
+            width: 100%;
+            height: 100vh;
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 主应用容器 -->
+    <div id="appContainer">
+        <!-- 加载遮罩 -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p>加载财务分析系统...</p>
+        </div>
+        
+        <!-- 最小化界面（确保有内容显示） -->
+        <div style="
+            display: flex;
+            width: calc(100% - 40px);
+            height: calc(100vh - 40px);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin: 20px;
+            position: relative;
+            z-index: 1;
+        ">
+            <!-- 左侧边栏 -->
+            <div style="
+                width: 300px;
+                background: #f8f9fa;
+                border-right: 1px solid #e0e0e0;
+                padding: 20px;
+            ">
+                <h3 style="color: #2c5282; margin-top: 0;">🔍 搜索公司</h3>
+                <p>搜索模块加载中...</p>
+                
+                <h3 style="color: #2c5282; margin-top: 30px;">📊 指标目录</h3>
+                <p>目录模块加载中...</p>
+            </div>
+            
+            <!-- 右侧内容 -->
+            <div id="content-area" style="
+                flex: 1;
+                padding: 20px;
+                background: white;
+            ">
+                <h2 style="color: #2c5282;">白酒行业财务分析系统</h2>
+                <p>系统正在初始化，请稍候...</p>
+                
+                <div style="
+                    background: #f0f9ff;
+                    padding: 20px;
+                    border-radius: 8px;
+                    margin-top: 20px;
+                    border: 1px solid #bee3f8;
+                ">
+                    <h4>📈 系统状态</h4>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>✅ 服务器运行正常</li>
+                        <li>✅ 前端文件已加载 (7.4KB)</li>
+                        <li>⏳ 模块初始化中...</li>
+                        <li>🔧 如长时间空白，请刷新页面</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 加载状态 -->
+        <div id="loadingStatus" style="
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        ">
+            加载时间: <span id="loadTime">0</span>秒 | 模块: <span id="moduleStatus">等待</span>
+        </div>
+        
+        <script>
+            // 简单加载计时和状态更新
+            let startTime = Date.now();
+            let moduleStatus = '等待';
+            
+            function updateStatus() {
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                const timeElement = document.getElementById('loadTime');
+                const statusElement = document.getElementById('moduleStatus');
+                
+                if (timeElement) timeElement.textContent = elapsed;
+                if (statusElement) statusElement.textContent = moduleStatus;
+                
+                // 更新状态
+                if (elapsed > 5) moduleStatus = '超时';
+                else if (elapsed > 3) moduleStatus = '检查模块';
+                else if (elapsed > 1) moduleStatus = '加载中';
+            }
+            
+            setInterval(updateStatus, 1000);
+            
+            // 检查ModuleLoader（只检查不重复初始化）
+            setTimeout(() => {
+                console.log('检查ModuleLoader状态...');
+                if (typeof window.ModuleLoader !== 'undefined') {
+                    moduleStatus = '加载器就绪';
+                    console.log('ModuleLoader状态: 已加载');
+                    
+                    // 检查是否已经初始化过
+                    if (window.ModuleLoader._initialized) {
+                        moduleStatus = '已初始化';
+                        console.log('ModuleLoader已经初始化过');
+                    }
+                } else {
+                    moduleStatus = '加载器未找到';
+                    console.warn('ModuleLoader未加载');
+                }
+            }, 1000);
+            
+            // 3秒后隐藏加载遮罩（即使模块未加载）
+            setTimeout(() => {
+                const overlay = document.getElementById('loadingOverlay');
+                if (overlay) {
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        moduleStatus = '界面就绪';
+                    }, 500);
+                }
+            }, 3000);
+        </script>
+    </div>
+    
+    <!-- 初始化脚本 -->
+    <script>
+        // 检查模块加载器
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM加载完成，检查模块加载器...');
+            
+            if (typeof window.ModuleLoader === 'undefined') {
+                console.warn('模块加载器未加载，显示降级界面...');
+                
+                // 安全地隐藏加载遮罩
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'none';
+                }
+                
+                // 创建简单的降级界面
+                const appContainer = document.getElementById('appContainer');
+                if (appContainer) {
+                    appContainer.innerHTML = `
+                        <div class="error-state">
+                            <div class="icon">⚠️</div>
+                            <h3>应用加载失败</h3>
+                            <p>模块加载器未能正确加载</p>
+                            <button onclick="location.reload()" class="retry-btn">重新加载</button>
+                        </div>
+                    `;
+                }
+            } else {
+                console.log('模块加载器已加载，开始初始化...');
+                
+                // 立即开始初始化
+                setTimeout(() => {
+                    try {
+                        window.ModuleLoader.initApp().catch(error => {
+                            console.error('应用初始化失败:', error);
+                            
+                            // 显示错误界面
+                            const appContainer = document.getElementById('appContainer');
+                            if (appContainer) {
+                                appContainer.innerHTML = `
+                                    <div class="error-state">
+                                        <div class="icon">⚠️</div>
+                                        <h3>应用初始化失败</h3>
+                                        <p>${error.message || '未知错误'}</p>
+                                        <button onclick="location.reload()" class="retry-btn">重新加载</button>
+                                    </div>
+                                `;
+                            }
+                        });
+                    } catch (error) {
+                        console.error('初始化调用失败:', error);
+                    }
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

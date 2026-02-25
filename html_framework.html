@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白酒行业财务分析系统</title>
+    
+    <!-- 外部资源 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
+    <!-- 模块化CSS -->
+    <link rel="stylesheet" href="css/blue-theme-simple.css">
+    <link rel="stylesheet" href="css/layout-module.css">
+    
+    <!-- 模块化JS加载器 -->
+    <script src="js/modules/app-loader.js" type="module"></script>
+</head>
+<body>
+    <!-- 主应用容器 -->
+    <div id="appContainer">
+        <!-- 动态加载模块 -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p>加载财务分析系统...</p>
+        </div>
+    </div>
+    
+    <!-- 模块占位符 -->
+    <template id="searchModuleTemplate">
+        <!-- 搜索模块将在这里加载 -->
+    </template>
+    
+    <template id="directoryModuleTemplate">
+        <!-- 目录模块将在这里加载 -->
+    </template>
+    
+    <template id="contentModuleTemplate">
+        <!-- 内容模块将在这里加载 -->
+    </template>
+    
+    <!-- 初始化脚本 -->
+    <script>
+        // 初始化应用
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('HTML框架加载完成');
+            
+            // 检查模块加载器
+            if (typeof window.ModuleLoader !== 'undefined') {
+                window.ModuleLoader.initApp();
+            } else {
+                console.warn('模块加载器未找到，等待加载...');
+            }
+        });
+    </script>
+</body>
+</html>

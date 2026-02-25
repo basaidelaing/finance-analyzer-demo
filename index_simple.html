@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白酒行业财务分析系统</title>
+    
+    <!-- ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
+    <!-- 简约蓝色主题 -->
+    <link rel="stylesheet" href="css/blue-theme-simple.css">
+    
+    <!-- 主应用JS -->
+    <script type="module" src="js/app-main.js"></script>
+</head>
+<body>
+    <!-- 主容器：左右分栏 -->
+    <div class="app-container">
+        
+        <!-- 左侧边栏 -->
+        <div class="left-sidebar">
+            
+            <!-- 左上角搜索框 -->
+            <div class="search-section">
+                <div class="search-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" 
+                           class="search-input" 
+                           id="companySearch"
+                           placeholder="搜索白酒公司（名称或代码）..."
+                           autocomplete="off">
+                    <div class="search-suggestions" id="searchSuggestions">
+                        <!-- 搜索建议将通过JS动态填充 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 目录将通过JS动态加载 -->
+            <div id="directoryContainer"></div>
+            
+        </div> <!-- 左侧边栏结束 -->
+        
+        <!-- 右侧内容将通过JS动态加载 -->
+        <div id="contentContainer"></div>
+        
+    </div> <!-- 主容器结束 -->
+    
+    <!-- 加载遮罩 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+</body>
+</html>

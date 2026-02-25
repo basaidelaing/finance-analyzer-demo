@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试目录模块</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #testResult {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>测试目录模块</h1>
+    <div id="directoryContainer" style="width: 300px; height: 500px; border: 1px solid #ddd; padding: 10px;"></div>
+    <div id="testResult">等待测试...</div>
+    
+    <script type="module">
+        async function testDirectoryModule() {
+            const resultDiv = document.getElementById('testResult');
+            
+            try {
+                // 导入目录模块
+                console.log('开始导入目录模块...');
+                const module = await import('./js/modules/directory-module-fixed.js');
+                console.log('模块导入成功:', module);
+                
+                // 创建实例
+                let directoryInstance;
+                if (module.default) {
+                    directoryInstance = new module.default();
+                    console.log('使用默认导出创建实例');
+                } else if (module.DirectoryModule) {
+                    directoryInstance = new module.DirectoryModule();
+                    console.log('使用DirectoryModule类创建实例');
+                } else {
+                    directoryInstance = module;
+                    console.log('使用整个模块作为实例');
+                }
+                
+                console.log('目录实例:', directoryInstance);
+                
+                // 测试render方法
+                if (typeof directoryInstance.render === 'function') {
+                    const html = directoryInstance.render();
+                    document.getElementById('directoryContainer').innerHTML = html;
+                    console.log('render方法测试通过');
+                    
+                    // 测试init方法
+                    if (typeof directoryInstance.init === 'function') {
+                        await directoryInstance.init();
+                        console.log('init方法测试通过');
+                    } else {
+                        console.warn('init方法不存在');
+                    }
+                    
+                    resultDiv.innerHTML = '<div class="success">✅ 目录模块测试通过！</div>';
+                    resultDiv.innerHTML += `<div>模块类型: ${typeof directoryInstance}</div>`;
+                    resultDiv.innerHTML += `<div>有render方法: ${typeof directoryInstance.render === 'function'}</div>`;
+                    resultDiv.innerHTML += `<div>有init方法: ${typeof directoryInstance.init === 'function'}</div>`;
+                } else {
+                    throw new Error('目录实例没有render方法');
+                }
+                
+            } catch (error) {
+                console.error('测试失败:', error);
+                resultDiv.innerHTML = `<div class="error">❌ 测试失败: ${error.message}</div>`;
+                resultDiv.innerHTML += `<div>堆栈: ${error.stack}</div>`;
+            }
+        }
+        
+        // 运行测试
+        testDirectoryModule();
+    </script>
+</body>
+</html>

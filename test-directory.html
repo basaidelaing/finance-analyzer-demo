@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目录模块测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 10px;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #4a90e2;
+        }
+        
+        button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        button:hover {
+            background: #357abd;
+        }
+        
+        #directoryContainer {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 20px;
+            min-height: 500px;
+            background: white;
+        }
+        
+        .log-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .log-info {
+            color: #1890ff;
+        }
+        
+        .log-warn {
+            color: #faad14;
+        }
+        
+        .log-error {
+            color: #ff4d4f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>目录模块测试页面</h1>
+        
+        <div class="test-section">
+            <h3>测试说明</h3>
+            <p>此页面用于测试修复后的目录模块，验证以下功能：</p>
+            <ul>
+                <li>✅ 显示所有16个指标（而不是只显示3个）</li>
+                <li>✅ 正确的三级目录结构：维度7 → 指标类别 → 具体指标</li>
+                <li>✅ 正确的分类映射：API返回的中文分类 → 前端期望的英文分类</li>
+                <li>✅ 使用静态指标数据，避免动态加载问题</li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <h3>操作</h3>
+            <button id="initBtn">初始化目录模块</button>
+            <button id="refreshBtn">刷新目录</button>
+            <button id="clearLogBtn">清除日志</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>目录显示</h3>
+            <div id="directoryContainer">
+                <p style="color: #666; text-align: center; margin-top: 100px;">
+                    点击"初始化目录模块"按钮开始测试
+                </p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>控制台日志</h3>
+            <div id="logContainer" class="log-container"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // 重写console方法以捕获日志
+        const originalConsole = {
+            log: console.log,
+            warn: console.warn,
+            error: console.error,
+            info: console.info
+        };
+        
+        const logContainer = document.getElementById('logContainer');
+        
+        function addLogEntry(level, args) {
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${level}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${Array.from(args).join(' ')}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalConsole.log.apply(console, args);
+            addLogEntry('info', args);
+        };
+        
+        console.warn = function(...args) {
+            originalConsole.warn.apply(console, args);
+            addLogEntry('warn', args);
+        };
+        
+        console.error = function(...args) {
+            originalConsole.error.apply(console, args);
+            addLogEntry('error', args);
+        };
+        
+        console.info = function(...args) {
+            originalConsole.info.apply(console, args);
+            addLogEntry('info', args);
+        };
+        
+        // 导入目录模块
+        import directoryModule from './js/modules/directory-three-level.js';
+        
+        document.getElementById('initBtn').addEventListener('click', async () => {
+            console.log('=== 开始初始化目录模块 ===');
+            try {
+                await directoryModule.init();
+                console.log('目录模块初始化完成');
+            } catch (error) {
+                console.error('目录模块初始化失败:', error);
+            }
+        });
+        
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            console.log('刷新目录显示');
+            directoryModule.rerender();
+        });
+        
+        document.getElementById('clearLogBtn').addEventListener('click', () => {
+            logContainer.innerHTML = '';
+            console.log('日志已清除');
+        });
+        
+        // 监听指标选择事件
+        document.addEventListener('indicatorSelected', (event) => {
+            const indicator = event.detail.indicator;
+            console.log(`指标被选中: ${indicator.code} - ${indicator.name}`);
+        });
+        
+        console.log('测试页面加载完成');
+    </script>
+</body>
+</html>

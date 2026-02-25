@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白酒行业财务分析系统 - 模块化版本</title>
+    
+    <!-- ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
+    <!-- 简约蓝色主题 -->
+    <link rel="stylesheet" href="css/blue-theme-simple.css">
+    
+    <!-- 模块化加载 -->
+    <script type="module">
+        // 动态加载模块
+        async function loadModule(url) {
+            try {
+                const response = await fetch(url);
+                return await response.text();
+            } catch (error) {
+                console.error(`加载模块失败 ${url}:`, error);
+                return `<div class="error">模块加载失败: ${url}</div>`;
+            }
+        }
+        
+        async function initApp() {
+            console.log('初始化模块化应用');
+            
+            // 加载搜索模块
+            const searchHTML = await loadModule('partials/search-section.html');
+            
+            // 加载目录模块
+            const directoryHTML = await loadModule('partials/directory-section.html');
+            
+            // 加载内容模块
+            const contentHTML = await loadModule('partials/content-section.html');
+            
+            // 构建应用
+            const appHTML = `
+                <!-- 主容器：左右分栏 -->
+                <div class="app-container">
+                    
+                    <!-- 左侧边栏 -->
+                    <div class="left-sidebar">
+                        ${searchHTML}
+                        ${directoryHTML}
+                    </div>
+                    
+                    <!-- 右侧内容 -->
+                    <div class="right-content">
+                        ${contentHTML}
+                    </div>
+                    
+                </div>
+            `;
+            
+            document.getElementById('appContainer').innerHTML = appHTML;
+            
+            // 隐藏加载遮罩
+            document.getElementById('loadingOverlay').style.display = 'none';
+            
+            console.log('应用初始化完成');
+        }
+        
+        // 页面加载后初始化
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</head>
+<body>
+    <!-- 主容器 -->
+    <div id="appContainer">
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p>加载模块化应用...</p>
+        </div>
+    </div>
+</body>
+</html>
