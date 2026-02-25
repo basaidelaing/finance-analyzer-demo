@@ -1,0 +1,256 @@
+{
+  "7.22": {
+    "7.22.1": {
+      "2024": {
+        "value": {
+          "2014": {
+            "value": -65653629.92,
+            "indicator_code": "7.22.1",
+            "year": 2014
+          },
+          "2015": {
+            "value": 230665056.14,
+            "indicator_code": "7.22.1",
+            "year": 2015
+          },
+          "2016": {
+            "value": 219307865.06,
+            "indicator_code": "7.22.1",
+            "year": 2016
+          },
+          "2017": {
+            "value": 225121908.21,
+            "indicator_code": "7.22.1",
+            "year": 2017
+          },
+          "2018": {
+            "value": 212256716.51,
+            "indicator_code": "7.22.1",
+            "year": 2018
+          },
+          "2019": {
+            "value": 381909590.49,
+            "indicator_code": "7.22.1",
+            "year": 2019
+          },
+          "2020": {
+            "value": 950153032.19,
+            "indicator_code": "7.22.1",
+            "year": 2020
+          },
+          "2021": {
+            "value": 1564671058.75,
+            "indicator_code": "7.22.1",
+            "year": 2021
+          },
+          "2022": {
+            "value": 400685329.54,
+            "indicator_code": "7.22.1",
+            "year": 2022
+          },
+          "2023": {
+            "value": 51239185.45,
+            "indicator_code": "7.22.1",
+            "year": 2023
+          },
+          "2024": {
+            "value": -411415035.55,
+            "indicator_code": "7.22.1",
+            "year": 2024
+          }
+        },
+        "indicator_code": "7.22.1",
+        "year": 2024
+      }
+    },
+    "7.22.2": {
+      "2024": {
+        "value": {
+          "2014": {
+            "value": 35123693.71,
+            "indicator_code": "7.22.2",
+            "year": 2014
+          },
+          "2015": {
+            "value": 35848686.4,
+            "indicator_code": "7.22.2",
+            "year": 2015
+          },
+          "2016": {
+            "value": 44210662.91,
+            "indicator_code": "7.22.2",
+            "year": 2016
+          },
+          "2017": {
+            "value": 38257283.36,
+            "indicator_code": "7.22.2",
+            "year": 2017
+          },
+          "2018": {
+            "value": 34089070.14,
+            "indicator_code": "7.22.2",
+            "year": 2018
+          },
+          "2019": {
+            "value": 35925811.52,
+            "indicator_code": "7.22.2",
+            "year": 2019
+          },
+          "2020": {
+            "value": 36628828.19,
+            "indicator_code": "7.22.2",
+            "year": 2020
+          },
+          "2021": {
+            "value": 35738942.78,
+            "indicator_code": "7.22.2",
+            "year": 2021
+          },
+          "2022": {
+            "value": 35860180.53,
+            "indicator_code": "7.22.2",
+            "year": 2022
+          },
+          "2023": {
+            "value": 42123943.5,
+            "indicator_code": "7.22.2",
+            "year": 2023
+          },
+          "2024": {
+            "value": 22199405.51,
+            "indicator_code": "7.22.2",
+            "year": 2024
+          }
+        },
+        "indicator_code": "7.22.2",
+        "year": 2024
+      }
+    },
+    "7.22.3": {
+      "2024": {
+        "value": {
+          "2014": {
+            "value": 0.0,
+            "indicator_code": "7.22.3",
+            "year": 2014
+          },
+          "2015": {
+            "value": 0.0,
+            "indicator_code": "7.22.3",
+            "year": 2015
+          },
+          "2016": {
+            "value": 0.0,
+            "indicator_code": "7.22.3",
+            "year": 2016
+          },
+          "2017": {
+            "value": 0.0,
+            "indicator_code": "7.22.3",
+            "year": 2017
+          },
+          "2018": {
+            "value": 88230.71,
+            "indicator_code": "7.22.3",
+            "year": 2018
+          },
+          "2019": {
+            "value": 77376.75,
+            "indicator_code": "7.22.3",
+            "year": 2019
+          },
+          "2020": {
+            "value": 0.0,
+            "indicator_code": "7.22.3",
+            "year": 2020
+          },
+          "2021": {
+            "value": 6567452.74,
+            "indicator_code": "7.22.3",
+            "year": 2021
+          },
+          "2022": {
+            "value": 269814.3,
+            "indicator_code": "7.22.3",
+            "year": 2022
+          },
+          "2023": {
+            "value": 191894.45,
+            "indicator_code": "7.22.3",
+            "year": 2023
+          },
+          "2024": {
+            "value": 95424.64,
+            "indicator_code": "7.22.3",
+            "year": 2024
+          }
+        },
+        "indicator_code": "7.22.3",
+        "year": 2024
+      }
+    },
+    "7.22.4": {
+      "2024": {
+        "value": {
+          "2014": {
+            "value": 873250.0,
+            "indicator_code": "7.22.4",
+            "year": 2014
+          },
+          "2015": {
+            "value": 3099750.0,
+            "indicator_code": "7.22.4",
+            "year": 2015
+          },
+          "2016": {
+            "value": 2318446.19,
+            "indicator_code": "7.22.4",
+            "year": 2016
+          },
+          "2017": {
+            "value": 35729816.76,
+            "indicator_code": "7.22.4",
+            "year": 2017
+          },
+          "2018": {
+            "value": 48635654.39,
+            "indicator_code": "7.22.4",
+            "year": 2018
+          },
+          "2019": {
+            "value": 48633096.79,
+            "indicator_code": "7.22.4",
+            "year": 2019
+          },
+          "2020": {
+            "value": 64935204.94,
+            "indicator_code": "7.22.4",
+            "year": 2020
+          },
+          "2021": {
+            "value": 226188611.34,
+            "indicator_code": "7.22.4",
+            "year": 2021
+          },
+          "2022": {
+            "value": 420502450.72999996,
+            "indicator_code": "7.22.4",
+            "year": 2022
+          },
+          "2023": {
+            "value": 420945473.5,
+            "indicator_code": "7.22.4",
+            "year": 2023
+          },
+          "2024": {
+            "value": 324504765.16,
+            "indicator_code": "7.22.4",
+            "year": 2024
+          }
+        },
+        "indicator_code": "7.22.4",
+        "year": 2024
+      }
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "7.52": {
+    "7.52.1": {
+      "2024": {
+        "value": {
+          "2014": {
+            "value": {
+              "x": -14.40330921887009,
+              "y": 34.83825295009007,
+              "year": 2014,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 34.83825295009007,
+                "interest_rate": 0.0,
+                "sales_growth": 0.0,
+                "sustainable_growth": 14.40330921887009
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2014
+          },
+          "2015": {
+            "value": {
+              "x": -5.903767395671695,
+              "y": 16.783402015718078,
+              "year": 2015,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 16.783402015718078,
+                "interest_rate": 0.0,
+                "sales_growth": 3.083054919760382,
+                "sustainable_growth": 8.986822315432077
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2015
+          },
+          "2016": {
+            "value": {
+              "x": 5.263082052149276,
+              "y": 16.843917576207502,
+              "year": 2016,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 16.843917576207502,
+                "interest_rate": 0.0,
+                "sales_growth": 13.317637155054026,
+                "sustainable_growth": 8.05455510290475
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2016
+          },
+          "2017": {
+            "value": {
+              "x": 10.826292170265607,
+              "y": 20.140280952277774,
+              "year": 2017,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 20.140280952277774,
+                "interest_rate": 0.0,
+                "sales_growth": 22.99150675930763,
+                "sustainable_growth": 12.165214589042023
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2017
+          },
+          "2018": {
+            "value": {
+              "x": 18.628087982010065,
+              "y": 24.110940581959834,
+              "year": 2018,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 24.110940581959834,
+                "interest_rate": 0.0,
+                "sales_growth": 32.608343974800306,
+                "sustainable_growth": 13.980255992790243
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2018
+          },
+          "2019": {
+            "value": {
+              "x": 9.890304400453271,
+              "y": 25.8269436780871,
+              "year": 2019,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 25.8269436780871,
+                "interest_rate": 0.0,
+                "sales_growth": 25.200770663606242,
+                "sustainable_growth": 15.310466263152971
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2019
+          },
+          "2020": {
+            "value": {
+              "x": 0.5906271732144006,
+              "y": 26.58592168985506,
+              "year": 2020,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 26.58592168985506,
+                "interest_rate": 0.0,
+                "sales_growth": 14.371958895787865,
+                "sustainable_growth": 13.781331722573464
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2020
+          },
+          "2021": {
+            "value": {
+              "x": 1.6188924184956104,
+              "y": 26.799828906457456,
+              "year": 2021,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 26.799828906457456,
+                "interest_rate": 0.0,
+                "sales_growth": 15.505634829070786,
+                "sustainable_growth": 13.886742410575176
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2021
+          },
+          "2022": {
+            "value": {
+              "x": -1.7285630879260854,
+              "y": 27.08203910414667,
+              "year": 2022,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 27.08203910414667,
+                "interest_rate": 0.0,
+                "sales_growth": 11.719827831840087,
+                "sustainable_growth": 13.448390919766172
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2022
+          },
+          "2023": {
+            "value": {
+              "x": 0.6101156524341693,
+              "y": 27.47956577498542,
+              "year": 2023,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 27.47956577498542,
+                "interest_rate": 0.0,
+                "sales_growth": 12.577528157927864,
+                "sustainable_growth": 11.967412505493694
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2023
+          },
+          "2024": {
+            "value": {
+              "x": -22.793935535172906,
+              "y": 20.642123596020816,
+              "year": 2024,
+              "indicator_code": "7.52.1",
+              "components": {
+                "operating_asset_return": 20.642123596020816,
+                "interest_rate": 0.0,
+                "sales_growth": -18.44134257703235,
+                "sustainable_growth": 4.352592958140555
+              }
+            },
+            "indicator_code": "7.52.1",
+            "year": 2024
+          }
+        },
+        "indicator_code": "7.52.1",
+        "year": 2024
+      }
+    }
+  }
+}
