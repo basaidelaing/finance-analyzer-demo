@@ -1024,7 +1024,7 @@ async function fetchDeepSeekAnalysis(companyCode, indicatorGroupCode) {
     try {
         // 构建文件路径 - 使用指标组代码（如7.12），去掉小数点后的子指标编号
         const groupCode = indicatorGroupCode.split('.')[0] + '_' + indicatorGroupCode.split('.')[1];
-        const filePath = `/data/deepseek_analysis/${companyCode}/${companyCode}_${groupCode}_analysis.json`;
+        const filePath = `./data/deepseek_analysis/${companyCode}/${companyCode}_${groupCode}_analysis.json`;
         
         console.log('获取DeepSeek分析结果（指标组）:', filePath);
         
