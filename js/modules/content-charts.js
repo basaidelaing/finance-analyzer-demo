@@ -26,7 +26,7 @@ async function loadIndicatorSpec() {
     }
     
     try {
-        const response = await fetch('/finance-analyzer-demo/da ta/indicators_specification_with _prefix.json');
+        const response = await fetch('/finance-analyzer-demo/data/indicators_specification_with_prefix.json');
         if (!response.ok) {
             throw new Error(`指标规范加载失败: ${response.status}`);
         }
