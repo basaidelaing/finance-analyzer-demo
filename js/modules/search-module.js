@@ -50,7 +50,7 @@ class SearchModule {
         async loadCompanies() {
         try {
             // 从本地文件加载公司列表
-            const response = await fetch('../data/companies.json');
+            const response = await fetch('../../data/companies.json');
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
@@ -226,4 +226,5 @@ class SearchModule {
 
 // 创建实例并导出
 const searchModule = new SearchModule();
+
 export default searchModule;
