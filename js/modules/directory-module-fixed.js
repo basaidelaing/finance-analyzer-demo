@@ -111,7 +111,7 @@ class DirectoryModule {
         
         try {
             // 从指标规范文件加载
-            const response = await fetch('../data/indicators_specification_with_prefix.json');
+            const response = await fetch('https://basaidelaing.github.io/finance-analyzer-demo/data/indicators_specification_with_prefix.json');
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
