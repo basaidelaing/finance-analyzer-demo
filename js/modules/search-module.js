@@ -64,7 +64,8 @@ class SearchModule {
                     ts_code: company.ts_code,
                     name: company.name,
                     industry: company.industry,
-                    list_date: company.list_date
+                    list_date: company.list_date,
+                    summary: company.summary
                 }));
             } else if (typeof data === 'object') {
                 // 旧格式：{公司代码: 公司名称}
@@ -229,6 +230,7 @@ class SearchModule {
 const searchModule = new SearchModule();
 
 export default searchModule;
+
 
 
 
