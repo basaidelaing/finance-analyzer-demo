@@ -63,7 +63,7 @@ class SearchModule {
                 this.companies = data.map(company => ({
                     ts_code: company.ts_code,
                     name: company.name,
-                    industry: company.industry || '白酒',
+                    industry: company.industry,
                     list_date: company.list_date
                 }));
             } else if (typeof data === 'object') {
@@ -229,6 +229,7 @@ class SearchModule {
 const searchModule = new SearchModule();
 
 export default searchModule;
+
 
 
 
