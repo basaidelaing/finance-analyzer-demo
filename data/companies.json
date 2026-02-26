@@ -3,7 +3,8 @@
     "ts_code": "000568.SZ",
     "name": "泸州老窖",
     "industry": "白酒",
-    "list_date": "19940509"
+    "list_date": "19940509",
+    "summary": "反正分析出来不行",
   },
   {
     "ts_code": "000596.SZ",
@@ -65,4 +66,5 @@
     "industry": "白酒",
     "list_date": "20010827"
   }
+
 ]
