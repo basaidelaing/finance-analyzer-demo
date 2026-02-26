@@ -176,6 +176,12 @@ class SimpleContent {
                     <p><strong>股票代码:</strong> ${this.company.ts_code}</p>
                     <p><strong>行业:</strong> ${this.company.industry || '未指定'}</p>
                     <p><strong>上市日期:</strong> ${this.company.list_date || '未知'}</p>
+                    ${this.company.summary ? `
+                    <div style="background: #e6f7ff; padding: 12px; border-radius: 6px; border-left: 4px solid #2c5282; margin: 10px 0;">
+                        <p style="margin: 0; color: #2c5282; font-weight: 600;">📋 公司总结分析</p>
+                        <p style="margin: 8px 0 0 0; color: #333; line-height: 1.4;">${this.company.summary}</p>
+                    </div>
+                    ` : ''}
                     ${this.company.market_cap_rank ? `<p><strong>市值排名:</strong> ${this.company.market_cap_rank}</p>` : ''}
                     <p style="margin-top: 20px; color: #666;">请从目录选择要分析的指标</p>
                 </div>
