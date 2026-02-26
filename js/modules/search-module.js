@@ -63,8 +63,8 @@ class SearchModule {
                 this.companies = data.map(company => ({
                     ts_code: company.ts_code,
                     name: company.name,
-                    industry: company.industry || '白酒'
-                    list_date: company.list_date// 添加list_date字段
+                    industry: company.industry || '白酒'，
+                    list_date: company.list_date
                 }));
             } else if (typeof data === 'object') {
                 // 旧格式：{公司代码: 公司名称}
@@ -229,6 +229,7 @@ class SearchModule {
 const searchModule = new SearchModule();
 
 export default searchModule;
+
 
 
 
