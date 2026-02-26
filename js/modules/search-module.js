@@ -50,7 +50,7 @@ class SearchModule {
         async loadCompanies() {
         try {
             // 从本地文件加载公司列表
-            const response = await fetch('../../data/companies.json');
+            const response = await fetch('https://basaidelaing.github.io/finance-analyzer-demo/data/companies.json');
             if (!response.ok) {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
@@ -228,3 +228,4 @@ class SearchModule {
 const searchModule = new SearchModule();
 
 export default searchModule;
+
