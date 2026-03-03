@@ -1,0 +1,408 @@
+/**
+ * 图表配置模块 - 静态配置所有指标的图表类型和配置
+ * 根据用户需求配置16个指标组的图表
+ */
+
+export const CHART_CONFIGS = {
+    // 7.11 核心利润与核心利润率 (2个指标)
+    "7.11": {
+        name: "核心利润与核心利润率",
+        description: "核心利润 = 营业收入-营业成本-税金及附加-四费（销、管、研、财）；核心利润率 = 核心利润/营业收入",
+        charts: [
+            {
+                id: "core_profit",
+                title: "核心利润趋势",
+                type: "bar",
+                yAxisName: "核心利润（万元）",
+                seriesName: "核心利润",
+                color: "#5470c6",
+                calculation: "核心利润 = 营业收入 - 营业成本 - 税金及附加 - 销售费用 - 管理费用 - 研发费用 - 财务费用"
+            },
+            {
+                id: "core_profit_margin",
+                title: "核心利润率趋势",
+                type: "line",
+                yAxisName: "核心利润率（%）",
+                seriesName: "核心利润率",
+                color: "#91cc75",
+                calculation: "核心利润率 = 核心利润 / 营业收入 × 100%"
+            }
+        ]
+    },
+    
+    // 7.12 利润结构健康度 (3个指标)
+    "7.12": {
+        name: "利润结构健康度",
+        description: "三支柱分析：核心利润、其他收益、杂项收益占营业利润的比率",
+        charts: [
+            {
+                id: "profit_structure",
+                title: "利润结构分析",
+                type: "stacked_bar",
+                yAxisName: "占比（%）",
+                series: [
+                    { name: "核心利润占比", color: "#5470c6", calculation: "核心利润 / 营业利润" },
+                    { name: "其他收益占比", color: "#91cc75", calculation: "其他收益（政府补助等） / 营业利润" },
+                    { name: "杂项收益占比", color: "#fac858", calculation: "杂项收益（投资收益等） / 营业利润" }
+                ]
+            }
+        ]
+    },
+    
+    // 7.13 资产结构性收益比率 (2个指标)
+    "7.13": {
+        name: "资产结构性收益比率",
+        description: "经营资产报酬率和投资资产报酬率",
+        charts: [
+            {
+                id: "operating_asset_return",
+                title: "经营资产报酬率",
+                type: "line",
+                yAxisName: "报酬率（%）",
+                seriesName: "经营资产报酬率",
+                color: "#5470c6",
+                calculation: "经营资产报酬率 = (核心利润 + 其他收益) / 平均经营资产"
+            },
+            {
+                id: "investment_asset_return",
+                title: "投资资产报酬率",
+                type: "line",
+                yAxisName: "报酬率（%）",
+                seriesName: "投资资产报酬率",
+                color: "#91cc75",
+                calculation: "投资资产报酬率 = 杂项收益 / 平均投资资产"
+            }
+        ]
+    },
+    
+    // 7.14 经营资产轻/重/虚化指数 (2个指标)
+    "7.14": {
+        name: "经营资产轻/重/虚化指数",
+        description: "资产结构分析：虚化比率和重化比率",
+        charts: [
+            {
+                id: "virtualization_ratio",
+                title: "虚化比率",
+                type: "line",
+                yAxisName: "比率（%）",
+                seriesName: "虚化比率",
+                color: "#5470c6",
+                calculation: "虚化比率 = (商誉 + 并购产生的可辨认无形资产) / 经营资产"
+            },
+            {
+                id: "heavy_ratio",
+                title: "重化比率",
+                type: "line",
+                yAxisName: "比率（%）",
+                seriesName: "重化比率",
+                color: "#91cc75",
+                calculation: "重化比率 = (固定资产 + 在建工程) / 经营资产"
+            }
+        ]
+    },
+    
+    // 7.21 核心利润获现率 (1个指标)
+    "7.21": {
+        name: "核心利润获现率",
+        description: "核心利润现金实现能力",
+        charts: [
+            {
+                id: "cash_realization",
+                title: "核心利润获现率",
+                type: "line",
+                yAxisName: "获现率（%）",
+                seriesName: "核心利润获现率",
+                color: "#5470c6",
+                calculation: "核心利润获现率 = 经营活动现金流量净额 / (核心利润 + 其他收益)"
+            }
+        ]
+    },
+    
+    // 7.22 经营现金流安全度 (4个指标)
+    "7.22": {
+        name: "经营现金流安全度",
+        description: "现金流结构安全性分析",
+        charts: [
+            {
+                id: "cash_flow_structure",
+                title: "现金流结构分析",
+                type: "stacked_bar",
+                yAxisName: "金额（万元）",
+                series: [
+                    { name: "经营性现金流", color: "#5470c6" },
+                    { name: "折旧摊销", color: "#91cc75" },
+                    { name: "利息支出", color: "#fac858" },
+                    { name: "现金股利", color: "#ee6666" }
+                ]
+            },
+            {
+                id: "cash_flow_trend",
+                title: "经营性现金流趋势",
+                type: "line",
+                yAxisName: "金额（万元）",
+                seriesName: "经营性现金流",
+                color: "#5470c6"
+            }
+        ]
+    },
+    
+    // 7.23 行业壁垒系数 (1个指标)
+    "7.23": {
+        name: "行业壁垒系数",
+        description: "公司核心利润率相对于行业平均水平的比较",
+        charts: [
+            {
+                id: "industry_barrier",
+                title: "行业壁垒系数",
+                type: "line",
+                yAxisName: "系数",
+                seriesName: "行业壁垒系数",
+                color: "#5470c6",
+                calculation: "行业壁垒系数 = 公司核心利润率 / 行业平均核心利润率"
+            }
+        ]
+    },
+    
+    // 7.24 两费侵蚀分析 (2个指标)
+    "7.24": {
+        name: "两费侵蚀分析",
+        description: "减值侵蚀率和固定资产减值占比",
+        charts: [
+            {
+                id: "impairment_erosion",
+                title: "减值侵蚀率",
+                type: "line",
+                yAxisName: "侵蚀率（%）",
+                seriesName: "减值侵蚀率",
+                color: "#5470c6",
+                calculation: "减值侵蚀率 = (资产减值损失 + 信用减值损失) / 核心利润"
+            },
+            {
+                id: "fixed_asset_impairment",
+                title: "固定资产减值占比",
+                type: "line",
+                yAxisName: "占比（%）",
+                seriesName: "固定资产减值占比",
+                color: "#91cc75",
+                calculation: "固定资产减值占比 = 固定资产减值损失 / (资产减值损失 + 信用减值损失)"
+            }
+        ]
+    },
+    
+    // 7.25 减值准备激进性 (2个指标)
+    "7.25": {
+        name: "减值准备激进性",
+        description: "资产减值准备率和激进/保守指数",
+        charts: [
+            {
+                id: "impairment_reserve_ratio",
+                title: "资产减值准备率",
+                type: "line",
+                yAxisName: "准备率（%）",
+                seriesName: "资产减值准备率",
+                color: "#5470c6",
+                calculation: "资产减值准备率 = 期末减值准备余额 / 对应资产原值"
+            },
+            {
+                id: "aggressiveness_index",
+                title: "激进/保守指数",
+                type: "line",
+                yAxisName: "指数",
+                seriesName: "激进/保守指数",
+                color: "#91cc75",
+                calculation: "激进/保守指数 = 资产减值准备率 / 行业中位数"
+            }
+        ]
+    },
+    
+    // 7.31 资本结构健康度 (2个指标)
+    "7.31": {
+        name: "资本结构健康度",
+        description: "造血占比和输血占比",
+        charts: [
+            {
+                id: "hematopoietic_ratio",
+                title: "造血占比",
+                type: "line",
+                yAxisName: "占比（%）",
+                seriesName: "造血占比",
+                color: "#5470c6",
+                calculation: "造血占比 = (经营性负债 + 留存收益) / 总资产"
+            },
+            {
+                id: "transfusion_ratio",
+                title: "输血占比",
+                type: "line",
+                yAxisName: "占比（%）",
+                seriesName: "输血占比",
+                color: "#91cc75",
+                calculation: "输血占比 = (金融性负债 + 股本与资本公积) / 总资产"
+            }
+        ]
+    },
+    
+    // 7.32 有息负债与利息保障 (2个指标)
+    "7.32": {
+        name: "有息负债与利息保障",
+        description: "有息负债率和利息保障倍数",
+        charts: [
+            {
+                id: "interest_bearing_debt_ratio",
+                title: "有息负债率",
+                type: "line",
+                yAxisName: "负债率（%）",
+                seriesName: "有息负债率",
+                color: "#5470c6",
+                calculation: "有息负债率 = 有息负债 / 总资产"
+            },
+            {
+                id: "interest_coverage",
+                title: "利息保障倍数",
+                type: "line",
+                yAxisName: "倍数",
+                seriesName: "利息保障倍数",
+                color: "#91cc75",
+                calculation: "利息保障倍数 = (核心利润 + 其他收益) / 利息费用"
+            }
+        ]
+    },
+    
+    // 7.33 资本结构定位 (1个指标)
+    "7.33": {
+        name: "资本结构定位",
+        description: "企业发展模式矩阵定位",
+        charts: [
+            {
+                id: "capital_structure_positioning",
+                title: "资本结构定位矩阵",
+                type: "scatter",
+                xAxisName: "输血结构",
+                yAxisName: "造血占比",
+                seriesName: "定位",
+                quadrants: [
+                    { name: "利润积累型", color: "#5470c6" },
+                    { name: "经营驱动型", color: "#91cc75" },
+                    { name: "金融负债驱动型", color: "#fac858" },
+                    { name: "股东输血型", color: "#ee6666" }
+                ]
+            }
+        ]
+    },
+    
+    // 7.41 经营资产周转率 (1个指标)
+    "7.41": {
+        name: "经营资产周转率",
+        description: "重构后经营资产周转率",
+        charts: [
+            {
+                id: "operating_asset_turnover",
+                title: "经营资产周转率",
+                type: "line",
+                yAxisName: "周转率",
+                seriesName: "经营资产周转率",
+                color: "#5470c6",
+                calculation: "经营资产周转率 = 营业收入 / 平均经营资产"
+            }
+        ]
+    },
+    
+    // 7.42 摊销政策激进性 (2个指标)
+    "7.42": {
+        name: "摊销政策激进性",
+        description: "摊销政策激进指数和摊销前利润率",
+        charts: [
+            {
+                id: "amortization_aggressiveness",
+                title: "摊销政策激进指数",
+                type: "line",
+                yAxisName: "指数",
+                seriesName: "摊销政策激进指数",
+                color: "#5470c6",
+                calculation: "摊销政策激进指数 = 公司年摊销金额占核心利润比率 / 行业中位数"
+            },
+            {
+                id: "pre_amortization_margin",
+                title: "摊销前利润率",
+                type: "line",
+                yAxisName: "利润率（%）",
+                seriesName: "摊销前利润率",
+                color: "#91cc75"
+            }
+        ]
+    },
+    
+    // 7.51 净资产收益率 (1个指标)
+    "7.51": {
+        name: "净资产收益率",
+        description: "结构性净资产收益率",
+        charts: [
+            {
+                id: "roe",
+                title: "净资产收益率(ROE)",
+                type: "line",
+                yAxisName: "收益率（%）",
+                seriesName: "ROE",
+                color: "#5470c6",
+                calculation: "ROE = 归母净利润 / 平均归母净资产"
+            }
+        ]
+    },
+    
+    // 7.52 价值创造与融资状态 (1个指标)
+    "7.52": {
+        name: "价值创造与融资状态",
+        description: "财务战略矩阵定位",
+        charts: [
+            {
+                id: "financial_strategy_matrix",
+                title: "财务战略矩阵",
+                type: "scatter",
+                xAxisName: "资金状态（销售增长率 - 可持续增长率）",
+                yAxisName: "价值创造（经营资产报酬率 - 有息负债利率）",
+                seriesName: "定位",
+                quadrants: [
+                    { name: "价值创造型", color: "#5470c6" },
+                    { name: "资金充裕型", color: "#91cc75" },
+                    { name: "价值毁灭型", color: "#fac858" },
+                    { name: "资金紧张型", color: "#ee6666" }
+                ]
+            }
+        ]
+    }
+};
+
+/**
+ * 获取指标的图表配置
+ * @param {string} indicatorCode 指标代码，如 "7.11"
+ * @returns {Object} 图表配置
+ */
+export function getChartConfig(indicatorCode) {
+    return CHART_CONFIGS[indicatorCode] || {
+        name: "未知指标",
+        description: "暂无描述",
+        charts: [
+            {
+                id: "default",
+                title: "趋势图",
+                type: "line",
+                yAxisName: "值",
+                seriesName: "趋势",
+                color: "#5470c6"
+            }
+        ]
+    };
+}
+
+/**
+ * 获取所有指标的图表配置
+ * @returns {Object} 所有图表配置
+ */
+export function getAllChartConfigs() {
+    return CHART_CONFIGS;
+}
+
+export default {
+    CHART_CONFIGS,
+    getChartConfig,
+    getAllChartConfigs
+};
