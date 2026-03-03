@@ -1103,7 +1103,7 @@ function generateDirectAnalysisCard(analysisData, indicatorGroupCode, groupName)
         <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #bee3f8; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
             <h3 style="color: #2c5282; margin-top: 0; display: flex; align-items: center; gap: 10px;">
                 <span style="background: #2c5282; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">AI</span>
-                AI直接分析 - ${indicatorGroupCode} ${groupName || ''}
+                AI总结 - ${indicatorGroupCode} ${groupName || ''}
             </h3>
             
             <!-- 直接分析卡片 -->
