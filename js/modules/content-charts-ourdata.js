@@ -1,0 +1,464 @@
+/**
+ * 内容图表模块 - 使用我们的计算结果数据
+ * 包装原本的content-charts.js，只修改数据获取部分
+ * 已添加单位转换功能 - 支持万元等单位转换
+ */
+
+// 我们的API服务器地址
+const API_BASE_URL = 'http://localhost:8001';
+
+// 单位转换模块引用
+let unitConverter = null;
+
+/**
+ * 初始化单位转换模块
+ */
+async function initUnitConverter() {
+    if (unitConverter) return unitConverter;
+    
+    try {
+        const module = await import('./unit-converter.js');
+        unitConverter = module.default || module;
+        console.log('单位转换模块加载成功');
+    } catch (error) {
+        console.error('单位转换模块加载失败，使用默认处理:', error);
+        // 提供默认的单位转换函数
+        unitConverter = {
+            getUnitInfo: (chartConfig) => ({ needsConversion: false, unit: '' }),
+            convertYuanToWan: (value) => value,
+            createTooltipFormatter: (periods, values, chartConfig, indicatorCode) => {
+                return function(params) {
+                    const pointIndex = params[0].dataIndex;
+                    return `${periods[pointIndex]}<br/>${chartConfig.seriesName || '值'}: ${values[pointIndex].toFixed(2)}`;
+                };
+            },
+            createYAxisFormatter: (chartConfig) => '{value}',
+            processChartData: (dataPoints, indicatorCode, chartConfig) => {
+                const periods = dataPoints.map(point => point.period || '');
+                const rawValues = dataPoints.map(point => point.value || point.y || 0);
+                return {
+                    periods,
+                    rawValues,
+                    convertedValues: rawValues,
+                    needsConversion: false,
+                    unit: ''
+                };
+            }
+        };
+    }
+    
+    return unitConverter;
+}
+
+/**
+ * 获取图表数据 - 使用我们的API服务器
+ */
+export async function fetchChartData(company, indicator) {
+    if (!company || !indicator) {
+        throw new Error('公司和指标不能为空');
+    }
+    
+    // 使用我们的API服务器
+    const url = `${API_BASE_URL}/api/chart/${company.ts_code}/${indicator.code}`;
+    console.log('获取图表数据（我们的API）:', url);
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`图表API错误: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('图表数据:', data);
+        
+        // 确保数据格式正确
+        if (data.success && data.data) {
+            return {
+                success: true,
+                real_data: true,
+                indicator_code: indicator.code,
+                indicator_name: indicator.name,
+                data: data.data || [],
+                message: data.message || "基于我们的计算结果",
+                chart_type: "line",
+                chart_config: {
+                    name: `${indicator.name}趋势图`,
+                    type: "line"
+                }
+            };
+        } else {
+            // 如果格式不兼容，转换为正确的格式
+            return {
+                success: true,
+                real_data: true,
+                indicator_code: indicator.code,
+                indicator_name: indicator.name,
+                data: data.data || [],
+                message: "基于我们的计算结果",
+                chart_type: "line",
+                chart_config: {
+                    name: `${indicator.name}趋势图`,
+                    type: "line"
+                }
+            };
+        }
+        
+    } catch (error) {
+        console.error('获取图表数据失败:', error);
+        throw error;
+    }
+}
+
+/**
+ * 格式化图表数据
+ */
+export async function formatChartData(apiData) {
+    console.log('formatChartData被调用，apiData:', apiData);
+    
+    if (!apiData || !apiData.success) {
+        console.log('formatChartData: apiData无效或success为false');
+        return {
+            html: '<div style="color: red;">图表数据加载失败</div>',
+            renderChart: null
+        };
+    }
+    
+    const data = apiData.data || [];
+    const indicatorCode = apiData.indicator_code;
+    const indicatorName = apiData.indicator_name || '';
+    
+    console.log('formatChartData: 数据长度:', data.length, '指标代码:', indicatorCode, '指标名称:', indicatorName);
+    
+    if (data.length === 0) {
+        console.log('formatChartData: 数据为空');
+        return {
+            html: '<div style="color: orange;">暂无图表数据</div>',
+            renderChart: null
+        };
+    }
+    
+    // 导入图表配置
+    let config;
+    try {
+        const chartConfigs = await import('./chart-configs.js');
+        config = chartConfigs.getChartConfig(indicatorCode);
+        console.log('图表配置加载成功:', config);
+    } catch (error) {
+        console.error('导入图表配置失败:', error);
+        // 使用默认配置
+        config = {
+            name: indicatorName || indicatorCode,
+            description: '',
+            charts: [
+                {
+                    id: "default",
+                    title: `${indicatorCode}趋势图`,
+                    type: "line",
+                    yAxisName: "值",
+                    seriesName: "趋势",
+                    color: "#5470c6"
+                }
+            ]
+        };
+        console.log('使用默认图表配置:', config);
+    }
+    
+    // 生成图表容器ID
+    const chartId = `chart-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    // 准备数据点
+    const dataPoints = data.map((item, index) => ({
+        x: index,
+        y: item.value || item.y || 0,
+        period: item.period || `期间${index + 1}`,
+        value: item.value || item.y || 0
+    }));
+    
+    // 根据指标类型生成不同的HTML
+    let chartsHtml = '';
+    let renderFunctions = [];
+    
+    if (config.charts.length === 1) {
+        // 单个图表
+        const chartConfig = config.charts[0];
+        chartsHtml = `
+            <div id="${chartId}" style="width: 100%; height: 400px;"></div>
+        `;
+        
+        renderFunctions.push(() => renderSingleChart(chartId, dataPoints, chartConfig, indicatorCode));
+    } else {
+        // 多个图表
+        chartsHtml = '<div style="display: flex; flex-wrap: wrap; gap: 20px;">';
+        config.charts.forEach((chartConfig, index) => {
+            const subChartId = `${chartId}-${index}`;
+            chartsHtml += `
+                <div style="flex: 1; min-width: 300px;">
+                    <h4 style="margin: 10px 0 5px 0; color: #2c5282;">${chartConfig.title}</h4>
+                    <div id="${subChartId}" style="width: 100%; height: 300px;"></div>
+                </div>
+            `;
+            renderFunctions.push(() => renderSingleChart(subChartId, dataPoints, chartConfig, indicatorCode));
+        });
+        chartsHtml += '</div>';
+    }
+    
+    const html = `
+        ${chartsHtml}
+        <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <div>数据来源: 我们的财务指标计算结果</div>
+            <div>指标: ${indicatorCode} - ${indicatorName || config.name || '趋势图'}</div>
+            <div>数据点: ${data.length} 个期间</div>
+            <div>图表类型: ${config.charts.map(c => c.type).join(', ')}</div>
+        </div>
+    `;
+    
+    const renderChart = () => {
+        try {
+            // 执行所有渲染函数
+            renderFunctions.forEach(renderFn => {
+                if (typeof renderFn === 'function') {
+                    renderFn();
+                }
+            });
+        } catch (error) {
+            console.error('渲染图表失败:', error);
+        }
+    };
+    
+    return { html, renderChart };
+}
+
+/**
+ * 渲染单个图表
+ */
+async function renderSingleChart(chartId, dataPoints, chartConfig, indicatorCode) {
+    try {
+        console.log('renderSingleChart被调用，chartId:', chartId, 'dataPoints长度:', dataPoints.length);
+        
+        // 初始化单位转换模块
+        const converter = await initUnitConverter();
+        
+        if (!window.echarts) {
+            console.error('ECharts未加载，window.echarts:', window.echarts);
+            // 尝试动态加载ECharts
+            loadECharts().then(() => {
+                renderSingleChart(chartId, dataPoints, chartConfig, indicatorCode);
+            }).catch(error => {
+                console.error('动态加载ECharts失败:', error);
+            });
+            return;
+        }
+        
+        const chartElement = document.getElementById(chartId);
+        if (!chartElement) {
+            console.error('图表容器未找到:', chartId, '当前文档:', document.body.innerHTML.substring(0, 500));
+            return;
+        }
+        
+        console.log('开始初始化ECharts图表，容器:', chartId);
+        const chart = echarts.init(chartElement);
+        
+        // 使用单位转换模块处理数据
+        const processedData = converter.processChartData(dataPoints, indicatorCode, chartConfig);
+        const periods = processedData.periods;
+        const values = processedData.convertedValues; // 使用转换后的值
+        
+        console.log('数据转换状态:', {
+            needsConversion: processedData.needsConversion,
+            unit: processedData.unit,
+            rawValuesSample: processedData.rawValues.slice(0, 3),
+            convertedValuesSample: processedData.convertedValues.slice(0, 3)
+        });
+        
+        // 根据图表类型生成不同的配置
+        let option;
+        
+        switch (chartConfig.type) {
+            case 'bar':
+                option = createBarChartOption(periods, values, chartConfig, indicatorCode, converter, processedData);
+                break;
+            case 'stacked_bar':
+                option = createStackedBarChartOption(periods, values, chartConfig, indicatorCode, converter, processedData);
+                break;
+            case 'scatter':
+                option = createScatterChartOption(dataPoints, chartConfig, indicatorCode, converter, processedData);
+                break;
+            case 'line':
+            default:
+                option = createLineChartOption(periods, values, chartConfig, indicatorCode, converter, processedData);
+                break;
+        }
+        
+        chart.setOption(option);
+        
+        // 响应窗口大小变化
+        window.addEventListener('resize', () => {
+            chart.resize();
+        });
+        
+    } catch (error) {
+        console.error('渲染单个图表失败:', error);
+    }
+}
+
+/**
+ * 创建折线图配置
+ */
+function createLineChartOption(periods, values, chartConfig, indicatorCode, converter, processedData = {}) {
+    // 使用单位转换模块的格式化函数
+    const tooltipFormatter = converter.createTooltipFormatter(periods, values, chartConfig, indicatorCode);
+    const yAxisFormatter = converter.createYAxisFormatter(chartConfig);
+    
+    return {
+        title: {
+            text: chartConfig.title || `${indicatorCode}趋势图`,
+            left: 'center',
+            textStyle: {
+                color: '#2c5282',
+                fontSize: 14
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            formatter: tooltipFormatter
+        },
+        xAxis: {
+            type: 'category',
+            data: periods,
+            axisLabel: {
+                rotate: 45
+            },
+            name: '期间'
+        },
+        yAxis: {
+            type: 'value',
+            name: chartConfig.yAxisName || '值',
+            axisLabel: {
+                formatter: yAxisFormatter
+            }
+        },
+        series: [{
+            name: chartConfig.seriesName || '趋势',
+            type: 'line',
+            data: values,
+            smooth: true,
+            lineStyle: {
+                width: 3,
+                color: chartConfig.color || '#5470c6'
+            },
+            itemStyle: {
+                color: chartConfig.color || '#5470c6'
+            },
+            areaStyle: chartConfig.showArea ? {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: 'rgba(84, 112, 198, 0.3)' },
+                    { offset: 1, color: 'rgba(84, 112, 198, 0.05)' }
+                ])
+            } : undefined
+        }],
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '15%',
+            top: '15%',
+            containLabel: true
+        }
+    };
+}
+
+/**
+ * 创建柱状图配置
+ */
+function createBarChartOption(periods, values, chartConfig, indicatorCode, converter, processedData = {}) {
+    // 使用单位转换模块的格式化函数
+    const tooltipFormatter = converter.createTooltipFormatter(periods, values, chartConfig, indicatorCode);
+    const yAxisFormatter = converter.createYAxisFormatter(chartConfig);
+    
+    return {
+        title: {
+            text: chartConfig.title || `${indicatorCode}柱状图`,
+            left: 'center',
+            textStyle: {
+                color: '#2c5282',
+                fontSize: 14
+            }
+        },
+        tooltip: {
+            trigger: 'axis',
+            formatter: tooltipFormatter
+        },
+        xAxis: {
+            type: 'category',
+            data: periods,
+            axisLabel: {
+                rotate: 45
+            },
+            name: '期间'
+        },
+        yAxis: {
+            type: 'value',
+            name: chartConfig.yAxisName || '值',
+            axisLabel: {
+                formatter: yAxisFormatter
+            }
+        },
+        series: [{
+            name: chartConfig.seriesName || '数值',
+            type: 'bar',
+            data: values,
+            itemStyle: {
+                color: chartConfig.color || '#5470c6'
+            }
+        }],
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '15%',
+            top: '15%',
+            containLabel: true
+        }
+    };
+}
+
+/**
+ * 创建堆叠柱状图配置（简化版，实际需要多系列数据）
+ */
+function createStackedBarChartOption(periods, values, chartConfig, indicatorCode, converter, processedData = {}) {
+    // 简化处理：只显示一个系列
+    return createBarChartOption(periods, values, chartConfig, indicatorCode, converter, processedData);
+}
+
+/**
+ * 创建散点图配置（简化版）
+ */
+function createScatterChartOption(dataPoints, chartConfig, indicatorCode, converter, processedData = {}) {
+    // 简化处理：显示为折线图
+    const periods = dataPoints.map(point => point.period || '');
+    const values = dataPoints.map(point => point.value || point.y || 0);
+    return createLineChartOption(periods, values, chartConfig, indicatorCode, converter, processedData);
+}
+
+/**
+ * 动态加载ECharts
+ */
+function loadECharts() {
+    return new Promise((resolve, reject) => {
+        if (window.echarts) {
+            resolve();
+            return;
+        }
+        
+        console.log('开始动态加载ECharts...');
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js';
+        script.onload = () => {
+            console.log('ECharts加载成功');
+            resolve();
+        };
+        script.onerror = (error) => {
+            console.error('ECharts加载失败:', error);
+            reject(error);
+        };
+        document.head.appendChild(script);
+    });
+}
