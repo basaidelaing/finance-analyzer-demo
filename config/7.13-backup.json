@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "groupId": "7.13",
+  "groupName": "现金流象限生命周期分类",
+  "charts": [
+    {
+      "chartId": "7.13-01",
+      "title": "现金流净额趋势（三色标注正负）",
+      "chartType": "multiLineColor",
+      "csvFile": "7.13.csv",
+      "xField": "year",
+      "yFields": [
+        "n_cashflow_operating",
+        "n_cashflow_investing",
+        "n_cashflow_financing"
+      ],
+      "unit": {
+        "x": "年份",
+        "y": "亿元"
+      },
+      "colorRule": "positiveGreenNegativeRed",
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 0,
+            "label": "zero",
+            "style": "solid"
+          }
+        ],
+        "enableZoom": true,
+        "width": "100%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.13-02",
+      "title": "生命周期分类",
+      "chartType": "cashflowLifeCycleTable",
+      "csvFile": "7.13.csv",
+      "specialConfig": {
+        "showTable": true,
+        "enableZoom": true,
+        "width": "100%",
+        "height": 300
+      }
+    }
+  ]
+}

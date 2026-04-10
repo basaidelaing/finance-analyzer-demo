@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "groupId": "7.11",
+  "groupName": "财务战略矩阵动态轨迹",
+  "charts": [
+    {
+      "chartId": "7.11-01",
+      "title": "财务战略矩阵动态轨迹",
+      "chartType": "bubbleTrajectory",
+      "csvFile": "7.11.csv",
+      "xField": "sales_growth",
+      "yField": "roic",
+      "waccField": "wacc",
+      "sgrField": "sustainable_growth",
+      "revenueField": null,
+      "unit": {
+        "x": "销售增长率-可持续增长率 %",
+        "y": "ROIC-WACC %"
+      },
+      "specialConfig": {
+        "quadrants": [
+          {
+            "name": "创造价值 / 现金剩余",
+            "x": [null, 0],
+            "y": [0, null],
+            "color": "rgba(46, 125, 50, 0.15)"
+          },
+          {
+            "name": "创造价值 / 现金短缺",
+            "x": [0, null],
+            "y": [0, null],
+            "color": "rgba(255, 152, 0, 0.15)"
+          },
+          {
+            "name": "损害价值 / 现金剩余",
+            "x": [null, 0],
+            "y": [null, 0],
+            "color": "rgba(255, 152, 0, 0.15)"
+          },
+          {
+            "name": "损害价值 / 现金短缺",
+            "x": [0, null],
+            "y": [null, 0],
+            "color": "rgba(244, 67, 54, 0.15)"
+          }
+        ],
+        "wacc": 10,
+        "enableZoom": true,
+        "enableTimeSlider": true,
+        "width": "100%",
+        "height": 650
+      }
+    }
+  ]
+}

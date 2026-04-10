@@ -1,0 +1,44 @@
+{
+  "version": "2.0",
+  "groupId": "7.24",
+  "groupName": "资产经营收益率",
+  "charts": [
+    {
+      "chartId": "7.24-01",
+      "title": "经营资产报酬率 vs 非经营资产报酬率",
+      "chartType": "dualAxis",
+      "csvFile": "7.24.csv",
+      "xField": "year",
+      "unit": {
+        "x": "年份"
+      },
+      "yAxis": [
+        {
+          "field": "ROOA",
+          "fieldName": "经营资产报酬率",
+          "type": "line",
+          "unit": "%",
+          "color": "#1E88E5"
+        },
+        {
+          "field": "ROIA",
+          "fieldName": "非经营资产报酬率",
+          "type": "line",
+          "unit": "%",
+          "color": "#FF9800"
+        }
+      ],
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 8,
+            "label": "WACC=8%",
+            "style": "dashed"
+          }
+        ],
+        "width": "100%",
+        "height": 500
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "groupId": "7.32",
+  "groupName": "经营资产周转天数",
+  "charts": [
+    {
+      "chartId": "7.32-03",
+      "title": "关键指标概览卡片",
+      "chartType": "simpleDataCardDashboard",
+      "csvFile": "7.32.csv"
+    },
+    {
+      "chartId": "7.32-01",
+      "title": "核心营运资本沉淀天数与经营资产周转率",
+      "chartType": "dualAxis",
+      "csvFile": "7.32.csv",
+      "xField": "year",
+      "yAxis": [
+        {
+          "field": "working_capital_days",
+          "fieldName": "核心营运资本沉淀天数",
+          "type": "line",
+          "unit": "天",
+          "color": "#1E88E5"
+        },
+        {
+          "field": "operating_asset_turnover",
+          "fieldName": "经营资产周转率",
+          "type": "line",
+          "unit": "次",
+          "color": "#FF9800"
+        }
+      ],
+      "specialConfig": {
+        "enableZoom": true,
+        "width": "100%",
+        "height": 450
+      }
+    },
+    {
+      "chartId": "7.32-02",
+      "title": "核心利润率与经营资产报酬率",
+      "chartType": "groupedBar",
+      "csvFile": "7.32.csv",
+      "xField": "year",
+      "yFields": [
+        "core_profit_margin",
+        "operating_asset_roa"
+      ],
+      "yFieldNames": [
+        "核心利润率",
+        "经营资产报酬率"
+      ],
+      "unit": {
+        "x": "年份",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5",
+        "#2E7D32"
+      ],
+      "specialConfig": {
+        "enableZoom": true,
+        "width": "100%",
+        "height": 450
+      }
+    }
+  ]
+}

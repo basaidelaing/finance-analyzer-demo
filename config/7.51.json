@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "groupId": "7.51",
+  "groupName": "营运资本资金来源结构",
+  "charts": [
+    {
+      "chartId": "7.51-01",
+      "title": "营运资金来源结构堆叠面积",
+      "chartType": "stackedArea",
+      "csvFile": "7.51.csv",
+      "xField": "year",
+      "yFields": [
+        "内生资金占比(%)",
+        "外生资金占比(%)"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#FF9800",
+        "#2E7D32"
+      ],
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 15,
+            "label": "15%",
+            "style": "dashed"
+          }
+        ],
+        "yMax": 20,
+        "width": "100%",
+        "height": 500
+      }
+    }
+  ]
+}

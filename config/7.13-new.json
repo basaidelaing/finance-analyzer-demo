@@ -1,0 +1,157 @@
+{
+  "version": "2.0",
+  "groupId": "7.13",
+  "groupName": "现金流肖像与生命周期判断",
+  "description": "三大现金流净额分组柱状图与生命周期联动分析",
+  "charts": [
+    {
+      "chartId": "7.13-01",
+      "title": "三大现金流净额演变",
+      "subtitle": "单位为亿元，正值表示现金流入，负值表示现金流出",
+      "chartType": "groupedBarWithBaseline",
+      "csvFile": "7.13.csv",
+      "xField": "year",
+      "yFields": [
+        {
+          "field": "n_cashflow_operating",
+          "name": "经营现金流",
+          "color": "#4CAF50",
+          "positiveColor": "#2E7D32",
+          "negativeColor": "#A5D6A7"
+        },
+        {
+          "field": "n_cashflow_investing",
+          "name": "投资现金流",
+          "color": "#FF9800",
+          "positiveColor": "#EF6C00",
+          "negativeColor": "#FFCC80"
+        },
+        {
+          "field": "n_cashflow_financing",
+          "name": "筹资现金流",
+          "color": "#2196F3",
+          "positiveColor": "#1565C0",
+          "negativeColor": "#90CAF9"
+        }
+      ],
+      "unit": {
+        "x": "年份",
+        "y": "亿元"
+      },
+      "specialConfig": {
+        "baseline": 0,
+        "baselineStyle": {
+          "color": "#9E9E9E",
+          "width": 2,
+          "type": "solid"
+        },
+        "showDataLabel": "hover",
+        "enableZoom": true,
+        "enableDrag": true,
+        "legendControl": true,
+        "timeSlider": {
+          "enabled": true,
+          "minYear": 2014,
+          "maxYear": 2024
+        },
+        "lifecycleFilter": {
+          "enabled": true,
+          "options": ["全部", "成熟期", "成长期", "衰退期"]
+        },
+        "width": "100%",
+        "height": 500
+      }
+    },
+    {
+      "chartId": "7.13-02",
+      "title": "现金流肖像与生命周期联动表",
+      "chartType": "cashflowLifeCycleTableEnhanced",
+      "csvFile": "7.13.csv",
+      "fields": [
+        {
+          "field": "year",
+          "name": "年份",
+          "type": "number",
+          "width": 80
+        },
+        {
+          "field": "operating_symbol",
+          "name": "经营符号",
+          "type": "symbol",
+          "positiveColor": "#4CAF50",
+          "negativeColor": "#F44336",
+          "width": 80
+        },
+        {
+          "field": "investing_symbol",
+          "name": "投资符号",
+          "type": "symbol",
+          "positiveColor": "#4CAF50",
+          "negativeColor": "#F44336",
+          "width": 80
+        },
+        {
+          "field": "financing_symbol",
+          "name": "筹资符号",
+          "type": "symbol",
+          "positiveColor": "#4CAF50",
+          "negativeColor": "#F44336",
+          "width": 80
+        },
+        {
+          "field": "cashflow_portrait",
+          "name": "现金流肖像",
+          "type": "text",
+          "width": 100
+        },
+        {
+          "field": "life_cycle",
+          "name": "生命周期判断",
+          "type": "lifecycle",
+          "mapping": {
+            "成熟期": {
+              "color": "#2196F3",
+              "bgColor": "#E3F2FD",
+              "label": "成熟期"
+            },
+            "成长期": {
+              "color": "#4CAF50",
+              "bgColor": "#E8F5E9",
+              "label": "成长期"
+            },
+            "衰退期": {
+              "color": "#FF9800",
+              "bgColor": "#FFF3E0",
+              "label": "衰退期"
+            }
+          },
+          "width": 120
+        }
+      ],
+      "specialConfig": {
+        "enableInteractivity": true,
+        "chartTableLinkage": true,
+        "rowHoverHighlight": true,
+        "clickPopup": {
+          "enabled": true,
+          "fields": [
+            "n_cashflow_operating",
+            "n_cashflow_investing",
+            "n_cashflow_financing",
+            "operating_symbol",
+            "investing_symbol",
+            "financing_symbol",
+            "cashflow_portrait",
+            "life_cycle"
+          ]
+        },
+        "exportData": {
+          "enabled": true,
+          "formats": ["csv", "excel"]
+        },
+        "responsive": true,
+        "height": 350
+      }
+    }
+  ]
+}

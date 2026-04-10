@@ -1,0 +1,58 @@
+{
+  "version": "2.0",
+  "groupId": "7.26",
+  "groupName": "经营现金含量保障",
+  "charts": [
+    {
+      "chartId": "7.26-02",
+      "title": "安全评级卡片",
+      "chartType": "cardDashboard",
+      "csvFile": "7.26.csv"
+    },
+    {
+      "chartId": "7.26-01",
+      "title": "经营现金含量三重保障",
+      "chartType": "dualAxis726Special",
+      "csvFile": "7.26.csv",
+      "xField": "year",
+      "yAxis": [
+        {
+          "field": "receipt_ratio",
+          "fieldName": "收现比",
+          "type": "bar",
+          "unit": "%",
+          "color": "#1E88E5"
+        },
+        {
+          "field": "cash_pressure_ratio",
+          "fieldName": "付现压迫度",
+          "type": "bar",
+          "unit": "%",
+          "color": "#FF9800"
+        },
+        {
+          "field": "contract_liab_ratio",
+          "fieldName": "合同负债占比",
+          "type": "bar",
+          "unit": "%",
+          "color": "#2E7D32"
+        },
+        {
+          "field": "net_operate_cf",
+          "fieldName": "经营性净现金流",
+          "type": "line",
+          "unit": "亿元",
+          "color": "#424242",
+          "yAxisIndex": 1
+        }
+      ],
+      "specialConfig": {
+        "allowNegative": true,
+        "enableZoom": true,
+        "width": "100%",
+        "height": 550,
+        "stacked": true
+      }
+    }
+  ]
+}

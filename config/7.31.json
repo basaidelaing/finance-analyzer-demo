@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "groupId": "7.31",
+  "groupName": "轻重资产结构比例",
+  "charts": [
+    {
+      "chartId": "7.31-02",
+      "title": "资产结构健康度卡片",
+      "chartType": "assetStructureCardDashboard",
+      "csvFile": "7.31.csv"
+    },
+    {
+      "chartId": "7.31-01",
+      "title": "轻重资产结构趋势",
+      "chartType": "multiLine",
+      "csvFile": "7.31.csv",
+      "xField": "year",
+      "yFields": [
+        "heavy_ratio",
+        "virtual_ratio"
+      ],
+      "yFieldNames": [
+        "\"重\"化比率",
+        "\"虚\"化比率"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "thresholdMarking": true,
+        "enableZoom": true,
+        "width": "100%",
+        "height": 450
+      }
+    }
+  ]
+}

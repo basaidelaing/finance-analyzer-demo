@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "groupId": "7.22",
+  "groupName": "营业收入成本率",
+  "charts": [
+    {
+      "chartId": "7.22-01",
+      "title": "营业收入成本率与超额毛利率趋势",
+      "chartType": "barrierEfficiency",
+      "csvFile": "7.22.csv",
+      "xField": "year",
+      "yAxis": [
+        {
+          "field": "industry_barrier",
+          "unit": "%",
+          "color": "#1E88E5"
+        },
+        {
+          "field": "excess_gross_margin",
+          "unit": "%",
+          "color": "#2E7D32"
+        }
+      ],
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 0,
+            "label": "zero",
+            "style": "solid"
+          }
+        ],
+        "enableZoom": true,
+        "width": "100%",
+        "height": 600
+      }
+    },
+    {
+      "chartId": "7.22-02",
+      "title": "研发强度 vs 核心利润率",
+      "chartType": "bubbleTrajectory",
+      "csvFile": "7.12.csv",
+      "xField": "rd_intensity",
+      "yField": "core_profit_margin",
+      "revenueField": "revenue",
+      "unit": {
+        "x": "研发强度 %",
+        "y": "核心利润率 %"
+      },
+      "specialConfig": {
+        "enableZoom": true,
+        "width": "100%",
+        "height": 650
+      }
+    }
+  ]
+}

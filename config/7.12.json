@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "groupId": "7.12",
+  "groupName": "净资产收益率分解质量",
+  "charts": [
+    {
+      "chartId": "7.12-01",
+      "title": "结构性ROE归因",
+      "subtitle": "杜邦分解及实业贡献度分析",
+      "chartType": "structuralRoe",
+      "csvFile": "7.12.csv",
+      "xField": "year",
+      "yFields": [
+        "operating_roe",
+        "other_contribution"
+      ],
+      "roeField": "roe",
+      "unit": {
+        "x": "年份",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800"
+      ],
+      "lineColor": "#424242",
+      "specialConfig": {
+        "yAxisStartFromZero": true,
+        "enableZoom": true,
+        "enableTimeSlider": true,
+        "enableDataExport": true,
+        "width": "100%",
+        "height": 550
+      }
+    },
+    {
+      "chartId": "7.12-02",
+      "title": "杜邦三因素趋势图",
+      "chartType": "multiLine",
+      "csvFile": "7.12.csv",
+      "xField": "year",
+      "yFields": [
+        "net_margin",
+        "asset_turnover",
+        "equity_multiplier"
+      ],
+      "unit": {
+        "x": "年份",
+        "y": ["%", "次", "倍"]
+      },
+      "colors": [
+        "#1E88E5",
+        "#2E7D32",
+        "#FF9800"
+      ],
+      "yAxisCount": 3,
+      "specialConfig": {
+        "enableZoom": true,
+        "linkWithMainChart": true,
+        "width": "100%",
+        "height": 450
+      }
+    }
+  ]
+}

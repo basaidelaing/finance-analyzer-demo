@@ -1,0 +1,45 @@
+{
+  "version": "2.0",
+  "groupId": "7.25",
+  "groupName": "核心利润获现率分析",
+  "charts": [
+    {
+      "chartId": "7.25-01",
+      "title": "核心利润获现率与现金流构成",
+      "chartType": "dualAxis",
+      "csvFile": "7.25.csv",
+      "xField": "year",
+      "yAxis": [
+        {
+          "field": "core_profit_cash_ratio",
+          "fieldName": "核心利润获现率",
+          "type": "line",
+          "unit": "%",
+          "color": "#1E88E5"
+        },
+        {
+          "field": "core_profit",
+          "fieldName": "核心利润额",
+          "type": "bar",
+          "unit": "亿元",
+          "color": "#FF9800",
+          "yAxisIndex": 1
+        },
+        {
+          "field": "net_operate_cash_flow",
+          "fieldName": "经营性现金流额",
+          "type": "bar",
+          "unit": "亿元",
+          "color": "#2E7D32",
+          "yAxisIndex": 1
+        }
+      ],
+      "specialConfig": {
+        "allowNegative": true,
+        "enableZoom": true,
+        "width": "100%",
+        "height": 550
+      }
+    }
+  ]
+}

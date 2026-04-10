@@ -1,0 +1,36 @@
+{
+  "version": "3.0",
+  "groupId": "7.33",
+  "groupName": "并购无形资产质量压力测试",
+  "charts": [
+    {
+      "chartId": "7.33-dashboard",
+      "title": "商誉减值摊销压力测试仪表盘",
+      "chartType": "goodwillDashboard",
+      "csvFile": "7.33.csv",
+      "xField": "year",
+      "fields": {
+        "goodwill_ratio": "goodwill_to_equity_ratio",
+        "amortization_index": "amortization_radical_index",
+        "intangible_roa": "roa_intangible",
+        "amortization_before_margin": "amortization_before_margin",
+        "core_profit_margin": "core_profit_margin",
+        "amortization_diff": "amortization_impact_diff"
+      },
+      "unit": {
+        "x": "年份",
+        "goodwill_ratio": "%",
+        "amortization_index": "倍",
+        "intangible_roa": "倍",
+        "margin": "%"
+      },
+      "specialConfig": {
+        "enableLinkage": true,
+        "enableTimeSlider": true,
+        "showDataCards": true,
+        "width": "100%",
+        "height": "auto"
+      }
+    }
+  ]
+}

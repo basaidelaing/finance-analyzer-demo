@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "groupId": "7.44",
+  "groupName": "股权质押对外担保关联资金占用",
+  "charts": [
+    {
+      "chartId": "7.44-01",
+      "title": "货币资金比例 vs 有息负债比例",
+      "chartType": "multiLine",
+      "csvFile": "7.44.csv",
+      "xField": "year",
+      "yFields": [
+        "money_cap_ratio",
+        "debt_cap_ratio"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          0,
+          0
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.44-02",
+      "title": "净利润增长率 vs OCF增长率",
+      "chartType": "multiLine",
+      "csvFile": "7.44.csv",
+      "xField": "year",
+      "yFields": [
+        "net_profit_growth",
+        "ocf_growth"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#2E7D32",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          0,
+          1
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.44-03",
+      "title": "关联方应收账款比例",
+      "chartType": "line",
+      "csvFile": "7.44.csv",
+      "xField": "year",
+      "yFields": [
+        "related_receivable_ratio"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5"
+      ],
+      "specialConfig": {
+        "alerts": [
+          {
+            "field": "related_receivable_ratio",
+            "condition": ">20%",
+            "alert": true,
+            "color": "rgba(200, 0, 0, 0.2)"
+          }
+        ],
+        "gridPosition": [
+          1,
+          0
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.44-04",
+      "title": "对外担保比例",
+      "chartType": "bar",
+      "csvFile": "7.44.csv",
+      "xField": "year",
+      "yFields": [
+        "guarantee_ratio"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "alerts": [
+          {
+            "field": "guarantee_ratio",
+            "condition": ">15%",
+            "alert": true,
+            "color": "rgba(200, 0, 0, 0.2)"
+          }
+        ],
+        "gridPosition": [
+          1,
+          1
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    }
+  ]
+}

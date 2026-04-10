@@ -1,0 +1,138 @@
+{
+  "version": "1.0",
+  "groupId": "7.43",
+  "groupName": "高估低估指标综合评分",
+  "layout": "grid2x2",
+  "charts": [
+    {
+      "chartId": "7.43-01",
+      "title": "应收账款减值准备率 vs 存货减值准备率",
+      "chartType": "multiLine",
+      "csvFile": "7.43.csv",
+      "xField": "year",
+      "yFields": [
+        "accounts_receivable_ratio",
+        "inventory_ratio"
+      ],
+      "unit": {
+        "x": "year",
+        "y": ""
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          0,
+          0
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.43-02",
+      "title": "固定资产指数",
+      "chartType": "line",
+      "csvFile": "7.43.csv",
+      "xField": "year",
+      "yFields": [
+        "fa_index"
+      ],
+      "unit": {
+        "x": "year",
+        "y": ""
+      },
+      "colors": [
+        "#2E7D32"
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          0,
+          1
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.43-03",
+      "title": "综合指数趋势",
+      "chartType": "line",
+      "csvFile": "7.43.csv",
+      "xField": "year",
+      "yFields": [
+        "comprehensive_index"
+      ],
+      "unit": {
+        "x": "year",
+        "y": ""
+      },
+      "colors": [
+        "#4CAF50"
+      ],
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 1,
+            "label": "baseline=1",
+            "style": "dashed"
+          }
+        ],
+        "gridPosition": [
+          1,
+          0
+        ],
+        "width": "50%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.43-04",
+      "title": "四个指数分开展示",
+      "chartType": "multiGrid",
+      "csvFile": "7.43.csv",
+      "xField": "year",
+      "yFields": [
+        "ar_index",
+        "inventory_index",
+        "fa_index",
+        "comprehensive_index"
+      ],
+      "titles": [
+        "应收账款指数",
+        "存货指数",
+        "固定资产指数",
+        "综合指数"
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          1,
+          1
+        ],
+        "grid": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "width": "50%",
+        "height": 400
+      },
+      "totalHeight": 800
+    }
+  ]
+}

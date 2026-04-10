@@ -1,0 +1,179 @@
+{
+  "version": "1.1",
+  "groupId": "7.41",
+  "groupName": "盈余质量预测Beneish M-score",
+  "layout": "grid2x2",
+  "charts": [
+    {
+      "chartId": "7.41-01",
+      "title": "SLOAN应计利润意向趋势",
+      "chartType": "line",
+      "csvFile": "7.41.csv",
+      "xField": "year",
+      "yFields": [
+        "sloan_total_accrual"
+      ],
+      "yFieldNames": [
+        "SLOAN应计利润意向"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5"
+      ],
+      "colorRegions": [
+        {
+          "condition": "<0.05",
+          "color": "rgba(0, 200, 0, 0.2)"
+        },
+        {
+          "condition": "0.05-0.1",
+          "color": "rgba(255, 200, 0, 0.2)"
+        },
+        {
+          "condition": ">0.1",
+          "color": "rgba(200, 0, 0, 0.2)"
+        }
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          0,
+          0
+        ],
+        "width": "50%",
+        "height": 300,
+        "markLines": [
+          { "y": 30, "name": "30%黄线", "lineStyle": { "color": "#FF9800", "type": "dashed", "width": 2 } },
+          { "y": 50, "name": "50%红线", "lineStyle": { "color": "#f44336", "type": "dashed", "width": 2 } }
+        ]
+      }
+    },
+    {
+      "chartId": "7.41-02",
+      "title": "应收账款指数趋势",
+      "chartType": "line",
+      "csvFile": "7.41.csv",
+      "xField": "year",
+      "yFields": [
+        "dsri"
+      ],
+      "yFieldNames": [
+        "应收账款指数"
+      ],
+      "unit": {
+        "x": "year",
+        "y": ""
+      },
+      "colors": [
+        "#FF9800"
+      ],
+      "colorRegions": [
+        {
+          "condition": "<1.2",
+          "color": "rgba(0, 200, 0, 0.2)"
+        },
+        {
+          "condition": "1.2-1.4",
+          "color": "rgba(255, 200, 0, 0.2)"
+        },
+        {
+          "condition": ">1.4",
+          "color": "rgba(200, 0, 0, 0.2)"
+        }
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          0,
+          1
+        ],
+        "width": "50%",
+        "height": 300,
+        "markLines": [
+          { "y": 30, "name": "30%黄线", "lineStyle": { "color": "#FF9800", "type": "dashed", "width": 2 } },
+          { "y": 50, "name": "50%红线", "lineStyle": { "color": "#f44336", "type": "dashed", "width": 2 } }
+        ]
+      }
+    },
+    {
+      "chartId": "7.41-03",
+      "title": "毛利率指数和营业收入增速指数趋势",
+      "chartType": "multiLine",
+      "csvFile": "7.41.csv",
+      "xField": "year",
+      "yFields": [
+        "gmi",
+        "sgi"
+      ],
+      "yFieldNames": [
+        "毛利率指数",
+        "营业收入增速指数"
+      ],
+      "unit": {
+        "x": "year",
+        "y": ""
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "alerts": [
+          {
+            "field": "gmi",
+            "condition": "<0.9",
+            "alert": true
+          },
+          {
+            "field": "sgi",
+            "condition": ">1.5",
+            "alert": true
+          }
+        ],
+        "gridPosition": [
+          1,
+          0
+        ],
+        "width": "50%",
+        "height": 300,
+        "markLines": [
+          { "y": 30, "name": "30%黄线", "lineStyle": { "color": "#FF9800", "type": "dashed", "width": 2 } },
+          { "y": 50, "name": "50%红线", "lineStyle": { "color": "#f44336", "type": "dashed", "width": 2 } }
+        ]
+      }
+    },
+    {
+      "chartId": "7.41-04",
+      "title": "利润缓冲垫趋势",
+      "chartType": "bar",
+      "csvFile": "7.41.csv",
+      "xField": "year",
+      "yFields": [
+        "profit_buffer_pct"
+      ],
+      "yFieldNames": [
+        "利润缓冲垫"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#4CAF50"
+      ],
+      "specialConfig": {
+        "gridPosition": [
+          1,
+          1
+        ],
+        "width": "50%",
+        "height": 300,
+        "markLines": [
+          { "y": 30, "name": "30%黄线", "lineStyle": { "color": "#FF9800", "type": "dashed", "width": 2 } },
+          { "y": 50, "name": "50%红线", "lineStyle": { "color": "#f44336", "type": "dashed", "width": 2 } }
+        ]
+      }
+    }
+  ]
+}

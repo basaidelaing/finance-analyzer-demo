@@ -1,0 +1,75 @@
+{
+  "version": "2.0",
+  "groupId": "7.23",
+  "groupName": "利润结构资本构成分析",
+  "charts": [
+    {
+      "chartId": "7.23-01",
+      "title": "利润结构占比（百分比）",
+      "chartType": "stackedBar",
+      "csvFile": "7.23.csv",
+      "xField": "year",
+      "yFields": [
+        "core_profit_ratio",
+        "other_income_ratio",
+        "misc_ratio"
+      ],
+      "unit": {
+        "x": "年份",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800",
+        "#2E7D32"
+      ],
+      "specialConfig": {
+        "stacked": true,
+        "markLines": [
+          {
+            "y": 100,
+            "label": "100%",
+            "style": "solid"
+          }
+        ],
+        "allowNegative": true,
+        "enableZoom": true,
+        "width": "100%",
+        "height": 500
+      }
+    },
+    {
+      "chartId": "7.23-02",
+      "title": "营业利润绝对值构成（亿元）",
+      "chartType": "groupedBar",
+      "csvFile": "7.23.csv",
+      "xField": "year",
+      "yFields": [
+        "core_profit",
+        "other_income",
+        "misc_income"
+      ],
+      "yFieldNames": [
+        "核心利润额",
+        "其他收益额",
+        "杂项收益额"
+      ],
+      "unit": {
+        "x": "年份",
+        "y": "亿元"
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800",
+        "#2E7D32"
+      ],
+      "specialConfig": {
+        "allowNegative": true,
+        "enableZoom": true,
+        "width": "100%",
+        "height": 500,
+        "stacked": false
+      }
+    }
+  ]
+}

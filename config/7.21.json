@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "groupId": "7.21",
+  "groupName": "核心利润率分析",
+  "charts": [
+    {
+      "chartId": "7.21-01",
+      "title": "核心利润与核心利润率趋势",
+      "chartType": "coreProfit",
+      "csvFile": "7.21.csv",
+      "xField": "year",
+      "yAxis": [
+        {
+          "field": "core_profit",
+          "type": "bar",
+          "unit": "亿元",
+          "color": "#1E88E5",
+          "opacity": 0.8
+        },
+        {
+          "field": "core_profit_margin",
+          "type": "line",
+          "unit": "%",
+          "color": "#2E7D32",
+          "opacity": 0.8
+        }
+      ],
+      "specialConfig": {
+        "referenceLines": [
+          {
+            "value": null,
+            "label": "行业平均",
+            "style": "dashed"
+          }
+        ],
+        "enableZoom": true,
+        "width": "100%",
+        "height": 500
+      }
+    }
+  ]
+}

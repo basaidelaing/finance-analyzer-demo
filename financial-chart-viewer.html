@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财务分析图表生成器 - 11家白酒公司</title>
+    <script src="https://cdn.staticfile.org/echarts/5.4.3/echarts.min.js"></script>
+    <link rel="stylesheet" href="./css/financial-chart-viewer.css">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <div class="header">
+        <h1>📊 白酒行业财务分析平台</h1>
+    </div>
+
+    <div class="main-container">
+        <!-- 侧边栏操作区 -->
+        <div class="sidebar">
+            <div class="control-group">
+                <label for="company-select">🏢 选择上市公司</label>
+                <select id="company-select">
+                    <option value="">-- 请选择公司 --</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>📈 财务指标组</label>
+                <div id="group-list" class="group-list">
+                    <!-- 动态生成指标组 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="content">
+            <!-- 图表容器 -->
+            <div id="charts-container" class="charts-container"></div>
+            
+            <!-- 底部信息栏 -->
+            <div class="info">
+                <strong>💡 数据说明：</strong> 指标配置从 <code>config/</code> 目录读取，原始数据从 <code>./</code> 目录读取，数据均来自公司公开年报。
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/financial-chart-bubble-trajectory.js"></script>
+    <script src="./js/financial-chart-core-profit.js"></script>
+    <script src="./js/financial-chart-barrier-efficiency.js"></script>
+    <script src="./js/financial-chart-roe-structural.js"></script>
+    <script src="./js/financial-chart-cashflow-portrait.js"></script>
+    <script src="./js/financial-chart-dual-axis.js"></script>
+    <script src="./js/financial-chart-7.26-special.js"></script>
+    <script src="./js/financial-chart-7.26-grid.js"></script>
+    <script src="./js/financial-card-dashboard.js"></script>
+    <script src="./js/financial-asset-structure-cards.js"></script>
+    <script src="./js/financial-simple-data-cards.js"></script>
+    <script src="./js/financial-chart-grouped-bar.js"></script>
+    <script src="./js/financial-chart-goodwill-dashboard.js"></script>
+    <script src="./js/financial-chart-multi-line.js"></script>
+    <script src="./js/financial-chart-7.41-grid.js"></script>
+    <script src="./js/financial-chart-7.42-grid.js"></script>
+    <script src="./js/financial-chart-7.43-grid.js"></script>
+    <script src="./js/financial-chart-7.44-grid.js"></script>
+    <script src="./js/financial-chart-7.52-grid.js"></script>
+    <script src="./js/financial-chart-7.53-grid.js"></script>
+    <script src="./js/financial-overunderestimate-cards.js"></script>
+    <script src="./js/financial-chart-viewer.js"></script>
+    <script src="./js/financial-chart-7.31-grid.js"></script>
+    <script src="./js/financial-chart-7.32-grid.js"></script>
+</body>
+</html>

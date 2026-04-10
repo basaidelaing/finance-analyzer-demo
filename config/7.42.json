@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "groupId": "7.42",
+  "groupName": "减值损失变动收益平滑",
+  "charts": [
+    {
+      "chartId": "7.42-01",
+      "title": "减值损失侵蚀比例趋势",
+      "chartType": "line",
+      "csvFile": "7.42.csv",
+      "xField": "year",
+      "yFields": [
+        "impairment_erosion_ratio"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5"
+      ],
+      "colorRegions": [
+        {
+          "condition": "<5%",
+          "color": "rgba(0, 200, 0, 0.2)"
+        },
+        {
+          "condition": "5%-15%",
+          "color": "rgba(255, 200, 0, 0.2)"
+        },
+        {
+          "condition": ">15%",
+          "color": "rgba(200, 0, 0, 0.2)"
+        }
+      ],
+      "specialConfig": {
+        "width": "100%",
+        "height": 400
+      }
+    },
+    {
+      "chartId": "7.42-02",
+      "title": "公允价值变动 + 处置收益堆叠面积",
+      "chartType": "stackedArea",
+      "csvFile": "7.42.csv",
+      "xField": "year",
+      "yFields": [
+        "fv_change_ratio",
+        "dispose_ratio"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#9C27B0",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 0,
+            "label": "zero",
+            "style": "solid"
+          }
+        ],
+        "width": "100%",
+        "height": 400
+      }
+    }
+  ]
+}

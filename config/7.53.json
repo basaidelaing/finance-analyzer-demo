@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "groupId": "7.53",
+  "groupName": "经营投资资本支出结构",
+  "charts": [
+    {
+      "chartId": "7.53-01",
+      "title": "经营投资资本结构堆叠面积",
+      "chartType": "stackedArea",
+      "csvFile": "7.53.csv",
+      "xField": "year",
+      "yFields": [
+        "造血占比",
+        "输血占比"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "colors": [
+        "#1E88E5",
+        "#FF9800"
+      ],
+      "specialConfig": {
+        "markLines": [
+          {
+            "y": 80,
+            "label": "80%经营性投入",
+            "style": "dashed"
+          }
+        ],
+        "yMax": 100,
+        "width": "100%",
+        "height": 600
+      }
+    },
+    {
+      "chartId": "7.53-02",
+      "title": "CAPEX占比",
+      "chartType": "bar",
+      "csvFile": "7.53.csv",
+      "xField": "year",
+      "yFields": [
+        "Capex内生强度"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "evaluationBins": [
+        {
+          "condition": "1%-2%",
+          "label": "正常维持",
+          "color": "#4CAF50"
+        },
+        {
+          "condition": ">2%",
+          "label": "扩张",
+          "color": "#2E7D32"
+        },
+        {
+          "condition": "<1%",
+          "label": "收缩",
+          "color": "#FF9800"
+        }
+      ],
+      "specialConfig": {
+        "width": "100%",
+        "height": "auto"
+      }
+    },
+    {
+      "chartId": "7.53-03",
+      "title": "M&A占比",
+      "chartType": "bar",
+      "csvFile": "7.53.csv",
+      "xField": "year",
+      "yFields": [
+        "M&A依赖度"
+      ],
+      "unit": {
+        "x": "year",
+        "y": "%"
+      },
+      "evaluationBins": [
+        {
+          "condition": "0%",
+          "label": "正常无重大并购",
+          "color": "#4CAF50"
+        },
+        {
+          "condition": ">5%",
+          "label": "重大并购",
+          "color": "#FF9800"
+        }
+      ],
+      "specialConfig": {
+        "width": "100%",
+        "height": "auto"
+      }
+    }
+  ]
+}

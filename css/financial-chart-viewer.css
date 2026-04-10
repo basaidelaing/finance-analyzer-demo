@@ -1,0 +1,298 @@
+/* 金融分析图表查看器 - 现代专业UI风格 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 全局变量 */
+:root {
+    /* 颜色方案 - 专业金融风格 */
+    --primary-color: #165DFF;
+    --success-color: #00B42A;
+    --warning-color: #FF7D00;
+    --danger-color: #F53F3F;
+    --text-primary: #1D2129;
+    --text-secondary: #4E5969;
+    --text-weak: #86909C;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F2F3F5;
+    --bg-tertiary: #F7F8FA;
+    --border-color: #E5E6EB;
+    --card-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.06);
+    --card-hover-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+    --sidebar-bg: #0F172A;
+    --sidebar-text: #94A3B8;
+    --sidebar-active-text: #FFFFFF;
+    --sidebar-active-bg: rgba(22, 93, 255, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* 头部样式 */
+.header {
+    background: linear-gradient(135deg, #165DFF 0%, #0F3ABA 100%);
+    color: white;
+    padding: 20px 32px;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    z-index: 100;
+}
+
+.header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* 主容器布局 */
+.main-container {
+    display: flex;
+    min-height: calc(100vh - 72px);
+}
+
+/* 侧边栏 */
+.sidebar {
+    width: 280px;
+    background-color: var(--bg-primary);
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+    z-index: 10;
+}
+
+.control-group {
+    margin-bottom: 28px;
+}
+
+.control-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+
+.control-group select:hover {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.control-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(22, 93, 255, 0.1);
+    outline: none;
+}
+
+/* 指标组列表 */
+.group-list {
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.group-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.group-list::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+}
+
+.group-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.group-item {
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.group-item:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.group-item.active {
+    background-color: rgba(22, 93, 255, 0.08);
+    color: var(--primary-color);
+    font-weight: 500;
+    border-color: rgba(22, 93, 255, 0.2);
+}
+
+/* 内容区 */
+.content {
+    flex: 1;
+    padding: 28px 32px;
+    overflow-y: auto;
+}
+
+/* 图表容器 */
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+/* 图表卡片 */
+.chart-wrapper {
+    background-color: var(--bg-primary);
+    border-radius: 10px;
+    padding: 20px 24px 0 24px; /* 顶部留出空间给工具栏，底部0给说明区域 */
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+/* 卡片仪表板专用样式 - 无白色背景 */
+.chart-wrapper.card-wrapper {
+    background-color: transparent !important;
+}
+
+.chart-wrapper:hover {
+    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-2px);
+}
+
+.chart-wrapper.single-chart {
+    height: 600px;
+}
+
+.chart-wrapper h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 图表容器 */
+.chart {
+    width: 100%;
+    height: 450px;
+    position: relative;
+}
+
+/* 图表说明区域 */
+.chart-description {
+    margin-top: 12px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary);
+    border-radius: 0 0 10px 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.chart-description strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.chart-description br {
+    margin-bottom: 4px;
+}
+
+/* 底部信息 */
+.info {
+    margin-top: 32px;
+    padding: 16px 20px;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.info code {
+    background-color: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    color: var(--primary-color);
+    font-size: 12px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .content {
+        padding: 20px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        padding: 20px;
+        box-shadow: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .group-list {
+        max-height: 200px;
+    }
+    
+    .content {
+        padding: 20px 16px;
+    }
+    
+    .chart {
+        height: 350px;
+    }
+    
+    .chart-wrapper {
+        padding: 16px;
+    }
+}
+
+/* ECharts 全局样式优化 */
+.echarts-tooltip {
+    border-radius: 6px !important;
+    box-shadow: var(--card-shadow) !important;
+    border: none !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+}
+
+/* 卡片仪表板专用样式 - 无白色背景 */
+.chart-wrapper.card-wrapper {
+    background: transparent !important;
+}

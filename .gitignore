@@ -1,0 +1,106 @@
+# 备份文件
+*.backup
+*.backup-*
+js - *备份/
+*-副本.js
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 日志和报告文件
+*.log
+*.txt
+*.md
+!README.md
+
+# 测试和调试文件
+test-*.html
+debug-*.js
+check-*.js
+verify-*.js
+final-*.js
+fix-*.js
+simple-*.js
+auto-*.js
+capture-*.js
+trace-*.js
+force-*.js
+keep-*.js
+launch-*.js
+learn-*.js
+list-*.js
+manual-*.js
+memory-*.js
+navigate-*.js
+open-*.js
+optimize-*.js
+parse-*.js
+performance-*.js
+permanent-*.js
+playwright-*.js
+plugin-*.js
+process-*.js
+quick-*.js
+read-*.js
+reconnect-*.js
+reverify-*.js
+rollback-*.js
+run-*.js
+sanwan-*.js
+scanmedbill-*.js
+screenshot-*.js
+search-*.js
+self-*.js
+send-*.js
+session-*.js
+setup-*.js
+shared-*.js
+start-*.js
+step-*.js
+strict-*.js
+style-*.js
+temp-*.js
+tushare-*.js
+typing-*.js
+ui-*.js
+use-*.js
+visual-*.js
+volcano-*.js
+vibe-*.js
+wait-*.js
+windclaw-*.js
+wps-*.js
+xiaohongshu-*.js
+~/
+
+# Python脚本
+*.py
+
+# JSON数据（除了配置和分析数据）
+*.json
+!config/*.json
+!analysis/*.json
+
+# 图片文件
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# 目录
+archive/
+screenshots/
+scripts/
+reports/
+output/
+skills/
+AlphaTFT/
+TFT-OCR-BOT/
+TFTMuZeroAgent/
+SOP/
+community-quality/
+financial-strategy-matrix/
+volcengine-photo-analysis/
